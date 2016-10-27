@@ -1,0 +1,51 @@
+version: '2'
+services:
+  # dns:
+  #   image: iverberk/docker-spy:latest
+  #   ports:
+  #     - "53:53/udp"
+  #     - "53:53"
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
+  #   environment:
+  #     DNS_DOMAIN: docker
+  #   depends_on:
+  #     - db
+  #     - redis
+  #     - cache
+  #     - web
+  #     - worker
+  db:
+    image: mysql:5.7.7
+    volumes:
+      - './data:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: mypass
+  # redis:
+  #   image: redis
+  # cache:
+  #   image: memcached
+  web:
+    build: .
+    command: rails server -b 0.0.0.0
+    ports:
+      - "80:3000"
+    environment:
+      SECRET_KEY_BASE: abcdefg
+      RAILS_ENV: development
+      MYSQL_ROOT_PASSWORD: mypass
+    links:
+      - db
+      # - redis
+      # - scache
+  # worker:
+  #   build: .
+  #   command: bundle exec sidekiq -e development -c 25
+  #   environment:
+  #     SECRET_KEY_BASE: abcdefg
+  #     RAILS_ENV: development
+  #     MYSQL_ROOT_PASSWORD: mypass
+  #   links:
+  #     - db
+  #     - redis
+  #     - cache

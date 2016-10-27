@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027220938) do
+ActiveRecord::Schema.define(version: 20161027223718) do
 
   create_table "requesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email"
@@ -18,4 +18,15 @@ ActiveRecord::Schema.define(version: 20161027220938) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "requester_id"
+    t.string   "cat"
+    t.string   "sbcat"
+    t.string   "type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["requester_id"], name: "index_requests_on_requester_id", using: :btree
+  end
+
+  add_foreign_key "requests", "requesters"
 end

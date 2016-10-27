@@ -1,0 +1,4 @@
+look_worker:
+  cron: "*/15 * * * *"
+  class: "LookWorker"
+  queue: look_worker

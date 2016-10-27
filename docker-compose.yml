@@ -21,8 +21,8 @@ services:
       - './data:/var/lib/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: mypass
-  # redis:
-  #   image: redis
+  redis:
+    image: redis
   # cache:
   #   image: memcached
   web:
@@ -38,16 +38,16 @@ services:
       MYSQL_ROOT_PASSWORD: mypass
     links:
       - db
-      # - redis
-      # - scache
-  # worker:
-  #   build: .
-  #   command: bundle exec sidekiq -e development -c 25
-  #   environment:
-  #     SECRET_KEY_BASE: abcdefg
-  #     RAILS_ENV: development
-  #     MYSQL_ROOT_PASSWORD: mypass
-  #   links:
-  #     - db
-  #     - redis
-  #     - cache
+      - redis
+      # - cache
+  worker:
+    build: .
+    command: bundle exec sidekiq -e development -c 25
+    environment:
+      SECRET_KEY_BASE: abcdefg
+      RAILS_ENV: development
+      MYSQL_ROOT_PASSWORD: mypass
+    links:
+      - db
+      - redis
+      # - cache

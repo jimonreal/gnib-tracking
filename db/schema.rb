@@ -10,23 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027223718) do
+ActiveRecord::Schema.define(version: 20161029051216) do
 
-  create_table "requesters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "count"
+    t.integer  "cat_id"
+    t.integer  "sbcat_id"
+    t.integer  "typ_id"
+    t.datetime "datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_availabilities_on_cat_id", using: :btree
+    t.index ["sbcat_id"], name: "index_availabilities_on_sbcat_id", using: :btree
+    t.index ["typ_id"], name: "index_availabilities_on_typ_id", using: :btree
+  end
+
+  create_table "cats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sbcats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "cat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_sbcats_on_cat_id", using: :btree
+  end
+
+  create_table "trackings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "cat_id"
+    t.integer  "sbcat_id"
+    t.integer  "typ_id"
+    t.index ["cat_id"], name: "index_trackings_on_cat_id", using: :btree
+    t.index ["sbcat_id"], name: "index_trackings_on_sbcat_id", using: :btree
+    t.index ["typ_id"], name: "index_trackings_on_typ_id", using: :btree
+    t.index ["user_id"], name: "index_trackings_on_user_id", using: :btree
+  end
+
+  create_table "typs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "requester_id"
-    t.string   "cat"
-    t.string   "sbcat"
-    t.string   "type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["requester_id"], name: "index_requests_on_requester_id", using: :btree
-  end
-
-  add_foreign_key "requests", "requesters"
+  add_foreign_key "availabilities", "cats"
+  add_foreign_key "availabilities", "sbcats"
+  add_foreign_key "availabilities", "typs"
+  add_foreign_key "sbcats", "cats"
+  add_foreign_key "trackings", "cats"
+  add_foreign_key "trackings", "sbcats"
+  add_foreign_key "trackings", "typs"
+  add_foreign_key "trackings", "users"
 end

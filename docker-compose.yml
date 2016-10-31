@@ -27,7 +27,7 @@ services:
   #   image: memcached
   web:
     build: .
-    command: rails server -b 0.0.0.0
+    command: bash -c "rm -f /opt/app/tmp/pids/server.pid && rails server -b 0.0.0.0"
     ports:
       - "80:3000"
     volumes:

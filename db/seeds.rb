@@ -5,3 +5,53 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Cat.create!(name: 'Other').sbcats.create! [
+  {name: 'Lost Card'},
+  {name: 'Stolen Card'},
+  {name: 'Join family member'}
+]
+
+Cat.create!(name: 'Permission Letter').sbcats.create! [
+  {name: 'Atypical Working schemes'},
+  {name: 'Defacto Relationship'},
+  {name: 'Doctors'},
+  {name: 'Elderly Dependent Relatives'},
+  {name: 'EU Treaty Rights'},
+  {name: 'Extension of visitor conditions'},
+  {name: 'Granted Refugees'},
+  {name: 'Subsidiary protection'},
+  {name: 'Invest or Start a Business'},
+  {name: 'Join my child who is an Irish citizen'},
+  {name: 'Join my partner or family member'},
+  {name: 'Leave to Remain'},
+  {name: 'Persons of Independent Means'},
+  {name: 'Religious Ministry'},
+  {name: 'Visiting Academics'},
+  {name: 'Volunteer e.g. in a charity'}
+]
+
+Cat.create!(name: 'Study').sbcats.create! [
+  {name: 'PhD'},
+  {name: 'Masters'},
+  {name: 'Higher National Diploma'},
+  {name: 'Degree'},
+  {name: 'English Language Course'},
+  {name: 'Second Level'},
+  {name: 'Pre-Masters'},
+  {name: 'Visiting Students'},
+  {name: '3rd Level Graduate Scheme'}
+]
+
+Cat.create!(name: 'Work').sbcats.create! [
+  {name: 'Work Permit Holder'},
+  {name: 'Hosting agreement'},
+  {name: 'Working Holiday'},
+  {name: 'Atypical Working Schemes'},
+  {name: 'Invest or Start a Business'},
+  {name: 'Visiting Academics'},
+  {name: 'Doctor'},
+  {name: '3rd Level Graduate Scheme'}
+]
+
+Typ.create! [{name: 'New'}, {name: 'Renew'}]

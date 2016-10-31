@@ -1,17 +1,14 @@
 # == Schema Information
 #
-# Table name: requesters
+# Table name: cats
 #
 #  id         :integer          not null, primary key
-#  email      :string(255)
+#  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
-
-class RequesterTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Cat < ApplicationRecord
+	has_many :sbcats
+  accepts_nested_attributes_for :sbcats
 end

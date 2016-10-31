@@ -1,0 +1,7 @@
+= simple_form_for @tracking do |f|
+	= f.simple_fields_for :user do |f|
+		= f.input :email
+	= f.association :cat
+	= f.association :sbcat
+	= f.association :typ
+	= f.button :submit

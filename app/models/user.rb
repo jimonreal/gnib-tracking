@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: requesters
+# Table name: users
 #
 #  id         :integer          not null, primary key
 #  email      :string(255)
@@ -8,10 +8,5 @@
 #  updated_at :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  email: MyString
-
-two:
-  email: MyString
+class User < ApplicationRecord
+end

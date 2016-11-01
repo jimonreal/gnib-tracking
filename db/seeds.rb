@@ -54,4 +54,4 @@ Cat.create!(name: 'Work').sbcats.create! [
   {name: '3rd Level Graduate Scheme'}
 ]
 
-Typ.create! [{name: 'New'}, {name: 'Renew'}]
+Typ.create! [{name: 'New'}, {name: 'Renewal'}]

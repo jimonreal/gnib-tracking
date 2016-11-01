@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'net/https'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -15,5 +16,7 @@ module App
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.assets.initialize_on_precompile = false
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

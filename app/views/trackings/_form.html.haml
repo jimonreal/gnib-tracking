@@ -1,7 +1,23 @@
-= simple_form_for @tracking do |f|
-	= f.simple_fields_for :user do |f|
-		= f.input :email
-	= f.association :cat
-	= f.association :sbcat
-	= f.association :typ
-	= f.button :submit
+.panel.panel-default
+	.panel-body
+		= simple_form_for @tracking, html: { class: 'form-vertical' } do |f|
+			.row
+				.col-md-4
+					= f.association :cat
+				.col-md-4
+					= f.association :sbcat
+				.col-md-4
+					= f.association :typ
+
+			%h4 Availability
+			= line_chart avaibility_chart_trackings_path(params: params), label: t('tracking.new.chart.yaxis')
+
+			= f.simple_fields_for :user do |f|
+				= f.input :email
+			= f.button :submit, class: "btn btn-lg btn-success"
+
+	:javascript
+		$('#tracking_cat_id, #tracking_sbcat_id, #tracking_typ_id').on('change', function(){
+			Chartkick.LineChart("chart-1", "/trackings/avaibility_chart?" + $('#new_tracking').serialize())
+		})
+

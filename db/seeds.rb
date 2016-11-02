@@ -55,3 +55,15 @@ Cat.create!(name: 'Work').sbcats.create! [
 ]
 
 Typ.create! [{name: 'New'}, {name: 'Renewal'}]
+
+if Rails.env.development?
+  rand(50..100).times do
+    cat = Cat.offset(rand Cat.count).first
+    Availability.create!(
+      cat: cat,
+      sbcat: cat.sbcats.offset(rand cat.sbcats.count).first,
+      typ: Typ.offset(rand Typ.count).first,
+      created_at: rand((7.days.ago)..(1.second.ago))
+    )
+  end
+end

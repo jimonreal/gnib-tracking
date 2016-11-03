@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require 'pathname'
+require 'fileutils'
+include FileUtils
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+chdir APP_ROOT do
+  puts "\n== Waiting database =="
+  system! 'while ! mysqladmin ping -h db --silent; do sleep 1; done'
+
+  # puts "\n== Restarting application server =="
+  # system! 'bin/rails restart'
+end

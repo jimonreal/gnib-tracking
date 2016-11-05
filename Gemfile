@@ -43,12 +43,23 @@ gem "responders"
 gem "chartkick"
 gem "groupdate"
 
+gem 'i18n-js'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-highcharts'
+  gem 'rails-assets-toastr'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
   gem 'byebug', platform: :mri
   gem 'webmock'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 group :development do

@@ -15,14 +15,17 @@
 require 'rails_helper'
 
 describe SeekAvailabilitiesService, type: :service do
+  let(:cat) { create(:cat) }
+  let(:typ) { create(:typ) }
+
   it 'calls to the site to look availabilities' do
 
     stub_request(:any, /.*/)
 
-    SeekAvailabilitiesService.new(cat: Cat.first, sbcat: Sbcat.first, typ: Typ.first).call
+    SeekAvailabilitiesService.new(cat: cat, typ: typ).call
 
     expect(WebMock).to have_requested(:get, 'https://burghquayregistrationoffice.inis.gov.ie/Website/AMSREG/AMSRegWeb.nsf/(getAppsNear)').
-      with(query: hash_including({openpage: nil, cat: Cat.first.name, sbcat: Sbcat.first.name, typ: Typ.first.name})).once
+      with(query: hash_including({openpage: nil, cat: cat.name, sbcat: 'All', typ: typ.name})).once
 
   end
 
@@ -30,30 +33,40 @@ describe SeekAvailabilitiesService, type: :service do
     it 'registers the availabilities' do
       stub_request(:any, /.*/).to_return(body: '{"slots":[{"time":"23 December 2016 - 08:00 AM", "id":"E0E9D13A423F8EDC8025805A001B7B8E"}, {"time":"23 December 2016 - 10:00 AM", "id":"9E0E2ED8425BF7BC8025805A001B7BAE"}]}')
 
-      SeekAvailabilitiesService.new(cat: Cat.first, sbcat: Sbcat.first, typ: Typ.first).call
+      SeekAvailabilitiesService.new(cat: cat, typ: typ).call
 
-      availability1 = Availability.where(cat: Cat.first, sbcat: Sbcat.first, typ: Typ.first)[0]
-      availability2 = Availability.where(cat: Cat.first, sbcat: Sbcat.first, typ: Typ.first)[1]
+      availability1 = Availability.where(cat: cat, typ: typ)[0]
+      availability2 = Availability.where(cat: cat, typ: typ)[1]
 
-      expect(availability1.cat).to eq(Cat.first)
-      expect(availability1.sbcat).to eq(Sbcat.first)
-      expect(availability1.typ).to eq(Typ.first)
+      expect(availability1.cat).to eq(cat)
+      expect(availability1.typ).to eq(typ)
       expect(availability1.datetime).to eq(DateTime.parse("23 December 2016 - 08:00 AM"))
 
-      expect(availability2.cat).to eq(Cat.first)
-      expect(availability2.sbcat).to eq(Sbcat.first)
-      expect(availability2.typ).to eq(Typ.first)
+      expect(availability2.cat).to eq(cat)
+      expect(availability2.typ).to eq(typ)
       expect(availability2.datetime).to eq(DateTime.parse("23 December 2016 - 10:00 AM"))
     end
   end
 
   context 'when do not exists availabilities' do
-    it 'registers the availabilities' do
+    it 'does not register the availabilities' do
       stub_request(:any, /.*/).to_return(body: '{"empty":"TRUE"}')
 
-      SeekAvailabilitiesService.new(cat: Cat.first, sbcat: Sbcat.first, typ: Typ.first).call
+      SeekAvailabilitiesService.new(cat: cat, typ: typ).call
 
       expect(Availability.count).to be 0
+    end
+
+    it 'expires the last availabilities that matches cat and typ' do
+      stub_request(:any, /.*/).to_return(body: '{"empty":"TRUE"}')
+
+      availability1 = FactoryGirl.create(:availability, cat: cat, typ: typ)
+      availability2 = FactoryGirl.create(:availability, cat: create(:cat), typ: typ)
+
+      SeekAvailabilitiesService.new(cat: cat, typ: typ).call
+
+      expect(availability1.reload.expired).to be true
+      expect(availability2.reload.expired).to be false
     end
   end
 end

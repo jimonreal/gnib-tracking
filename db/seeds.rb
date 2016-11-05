@@ -59,11 +59,12 @@ Typ.create! [{name: 'New'}, {name: 'Renewal'}]
 if Rails.env.development?
   rand(50..100).times do
     cat = Cat.offset(rand Cat.count).first
-    Availability.create!(
+    created = Availability.create!(
       cat: cat,
-      sbcat: cat.sbcats.offset(rand cat.sbcats.count).first,
       typ: Typ.offset(rand Typ.count).first,
-      created_at: rand((7.days.ago)..(1.second.ago))
+      created_at: rand((7.days.ago)..(1.second.ago)),
+      datetime: rand((1.months.from_now)..(2.months.from_now))
     )
+    Availability.where(cat: created.cat, typ: created.typ).where.not(id: created.id).update_all(expired: true)
   end
 end

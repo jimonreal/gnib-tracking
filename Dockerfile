@@ -1,6 +1,6 @@
 FROM ruby:2.3
 
-RUN apt-get update && apt-get install -y nodejs
+RUN apt-get update && apt-get install -y nodejs qt4-dev-tools libqt4-dev libqt4-core libqt4-gui xvfb mysql-client
 
 WORKDIR /tmp
 ADD Gemfile Gemfile

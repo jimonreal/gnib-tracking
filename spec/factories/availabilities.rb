@@ -11,8 +11,11 @@
 #  expired    :boolean          default(FALSE)
 #
 
-require 'rails_helper'
-
-RSpec.describe Availability, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+FactoryGirl.define do
+  factory :availability do
+    cat
+    typ
+    datetime { DateTime.now }
+    expired false
+  end
 end

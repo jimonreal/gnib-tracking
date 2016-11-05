@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029051216) do
+ActiveRecord::Schema.define(version: 20161030223908) do
 
   create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "count"
     t.integer  "cat_id"
-    t.integer  "sbcat_id"
     t.integer  "typ_id"
     t.datetime "datetime"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "expired",    default: false
     t.index ["cat_id"], name: "index_availabilities_on_cat_id", using: :btree
-    t.index ["sbcat_id"], name: "index_availabilities_on_sbcat_id", using: :btree
     t.index ["typ_id"], name: "index_availabilities_on_typ_id", using: :btree
   end
 
@@ -62,11 +60,9 @@ ActiveRecord::Schema.define(version: 20161029051216) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
-  add_foreign_key "availabilities", "cats"
-  add_foreign_key "availabilities", "sbcats"
-  add_foreign_key "availabilities", "typs"
   add_foreign_key "sbcats", "cats"
   add_foreign_key "trackings", "cats"
   add_foreign_key "trackings", "sbcats"

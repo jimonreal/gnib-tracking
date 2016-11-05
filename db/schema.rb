@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20161030223908) do
   end
 
   create_table "trackings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "cat_id"

@@ -2,11 +2,24 @@
   .container
     .row
       .col-lg-8.col-lg-offset-2
-        %h3 Show your work with this beautiful theme
-        %h1 Eyecatching Bootstrap 3 Theme.
-        %h5 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        %h5 More Lorem Ipsum added here too.
+        %h3 Welcome • Fáilte • Bienvenue •欢迎 • Bienvenido • أهلا بك
+        %h1 Track Appointments for Imigration Registration of Ireland
       .col-lg-8.col-lg-offset-2.himg
     .row
-      .col-lg-8.col-lg-offset-2
+      #form.col-lg-8.col-lg-offset-2
         = render 'form'
+
+:javascript
+  var sbcats = #{Sbcat.all.group_by(&:cat_id).to_json};
+  $(document).on('change', '#tracking_cat_id', function(e){
+    var catId = $('#tracking_cat_id').val();
+    $('#tracking_sbcat_id').html('').prop('disabled', !catId);
+    $('#tracking_sbcat_id').append($('<option>'));
+    $.each(sbcats[catId], function(i, item){
+      $('#tracking_sbcat_id').append($('<option>').val(item.id).text(item.name));
+    });
+  });
+
+  $(document).on('change', '#tracking_cat_id, #tracking_sbcat_id, #tracking_typ_id', function(){
+    $.ajax('/trackings/preview', {data: $('#new_tracking').serialize(), dataType: 'jsonp'})
+  })

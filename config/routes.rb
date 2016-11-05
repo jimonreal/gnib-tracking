@@ -5,10 +5,9 @@ Rails.application.routes.draw do
 
   resources :trackings do
   	collection do
-			get'avaibility_chart'
+			get 'preview'
 		end
   end
-  # get '/availabilities/chart', to: 'availabilities#chart', as: 'availabilities_chart'
 
 	mount Sidekiq::Web => '/sidekiq'
 end

@@ -13,5 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require highcharts
+//= require i18n
+//= require i18n/translations
 //= require chartkick
+//= require toastr
 //= require_tree .
+
+toastr.options = {
+  "positionClass": "toast-top-center",
+}

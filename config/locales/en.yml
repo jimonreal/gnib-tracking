@@ -24,6 +24,7 @@ en:
     attributes:
       user:
         email: 'E-mail'
+        eula: "I agree to receive emails (including the Lee Spring's eNewsletter, as well as promotional offers and surveys from Lee Spring.)"
       tracking:
         cat: 'Category'
         sbcat: 'Sub Category'
@@ -32,19 +33,21 @@ en:
   helpers:
     submit:
       tracking:
-        create: "Track Availability"
+        create: "Let me know"
 
   flash:
     actions:
       create:
-        notice: "%{resource_name} was successfully created."
+        success: "%{resource_name} was successfully created."
+        error: "%{resource_name} could not be created."
       update:
-        notice: "%{resource_name} was successfully updated."
+        success: "%{resource_name} was successfully updated."
       destroy:
-        notice: "%{resource_name} was successfully destroyed."
-        alert: "%{resource_name} could not be destroyed."
+        success: "%{resource_name} was successfully destroyed."
+        error: "%{resource_name} could not be destroyed."
 
-  tracking:
+  trackings:
     new:
       chart:
         yaxis: 'Total'
+      availabilities_count: '%{count} appointments currently available'

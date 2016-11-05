@@ -1,0 +1,4 @@
+$("#form").html('<%= j render('form') %>')
+<% flash.each do |key, value| %>
+  toastr.<%= key %>(<%= value.to_json.html_safe %>)
+<% end %>

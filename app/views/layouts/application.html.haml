@@ -5,9 +5,10 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'https://code.highcharts.com/highcharts.js'
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
 
   %body
     - flash.each do |key, value|
-      = content_tag :div, value, class: "flash #{key}"
+      :javascript
+        toastr.#{key}(#{value.to_json.html_safe})
     = yield

@@ -1,23 +1,29 @@
-.panel.panel-default
-	.panel-body
-		= simple_form_for @tracking, html: { class: 'form-vertical' } do |f|
-			.row
-				.col-md-4
-					= f.association :cat
-				.col-md-4
-					= f.association :sbcat
-				.col-md-4
-					= f.association :typ
+= simple_form_for @tracking, remote: true do |f|
+  .panel.panel-default
+    .panel-body
+      %h3 Appointment Selection
+      .row
+        .col-md-4
+          = f.association :cat
+        .col-md-4
+          = f.association :sbcat, collection: @tracking.cat.try(:sbcats), disabled: @tracking.cat.try(:sbcats).blank?
+        .col-md-4
+          = f.association :typ
 
-			%h4 Availability
-			= line_chart avaibility_chart_trackings_path(params: params), label: t('tracking.new.chart.yaxis')
+      .panel.panel-info
+        .panel-heading
+          %h4.total= t 'trackings.new.availabilities_count', count: @current_availabilities.count
+      
+      %h4 Availability History
+      = line_chart @chart_data, label: t('trackings.new.chart.yaxis'), height: '150px'
 
-			= f.simple_fields_for :user do |f|
-				= f.input :email
-			= f.button :submit, class: "btn btn-lg btn-success"
-
-	:javascript
-		$('#tracking_cat_id, #tracking_sbcat_id, #tracking_typ_id').on('change', function(){
-			Chartkick.LineChart("chart-1", "/trackings/avaibility_chart?" + $('#new_tracking').serialize())
-		})
-
+  .panel.panel-info.tracking-form
+    .panel-body
+      %h3 Track availabilities
+      %p Receive a e-mail when new appointments are available
+      .form-horizontal
+        = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+          = f.input :name, wrapper: :horizontal_form
+          = f.input :email, wrapper: :horizontal_form
+          = f.input :eula, as: :boolean, wrapper: :horizontal_boolean
+        = f.button :submit, class: "btn btn-lg btn-primary"

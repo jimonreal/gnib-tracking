@@ -13,7 +13,4 @@ end
 chdir APP_ROOT do
   puts "\n== Waiting database =="
   system! 'while ! mysqladmin ping -h db --silent; do sleep 1; done'
-
-  # puts "\n== Restarting application server =="
-  # system! 'bin/rails restart'
 end

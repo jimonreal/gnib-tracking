@@ -14,4 +14,4 @@ RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
 EXPOSE 80
 
-CMD bundle exec puma -C config/puma.rb
+CMD bash -c "bin/wait-db && bundle exec puma -C config/puma.rb"

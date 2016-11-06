@@ -9,6 +9,7 @@ development: &default
   host: db
   password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
   database: ial_development
+  pool: 30
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

@@ -10,8 +10,10 @@ RUN bundle install
 ADD . /opt/app
 WORKDIR /opt/app
 
+RUN chmod -R +x bin
+
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
 EXPOSE 80
 
-CMD bash -c "bin/wait-db && bundle exec puma -C config/puma.rb"
+CMD bash -c "bin/setup && bundle exec puma -C config/puma.rb"

@@ -16,7 +16,7 @@ class SeekAvailabilitiesService
       Availability.where(cat: @cat, typ: @typ).update_all(expired: true)
       json = JSON.parse(res.body) 
       json['slots'].each do |data|
-        Availability.create! cat: @cat, typ: @typ, datetime: DateTime.parse(data['time'])
+        Availability.create!(cat: @cat, typ: @typ, datetime: DateTime.parse(data['time'])) unless Availability.where(external_id: data['id']).exists?
       end if json.has_key? 'slots'
     end
   end

@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030223908) do
+ActiveRecord::Schema.define(version: 20161106172153) do
 
   create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cat_id"
     t.integer  "typ_id"
     t.datetime "datetime"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "expired",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "expired",     default: false
+    t.string   "external_id"
     t.index ["cat_id"], name: "index_availabilities_on_cat_id", using: :btree
     t.index ["typ_id"], name: "index_availabilities_on_typ_id", using: :btree
   end

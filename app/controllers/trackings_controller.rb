@@ -12,7 +12,7 @@ class TrackingsController < ApplicationController
       @availabilities = @availabilities.where(typ_id: params[:tracking][:typ_id]) if params[:tracking][:typ_id].present?
     end
 
-    @chart_data = @availabilities.group_by_day(:created_at).count
+    @chart_data = @availabilities.group_by_hour(:created_at).count
     @current_availabilities = @availabilities.where.not(expired: true)
 
   end

@@ -18,5 +18,6 @@ module App
     config.assets.initialize_on_precompile = true
 
     config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.perform_deliveries = true
   end
 end

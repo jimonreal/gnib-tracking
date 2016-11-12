@@ -22,7 +22,7 @@ describe AvailabilityMailer, type: :mailer do
   	
   	tracking.reload
 
-  	create(:availability, cat: tracking.cat, typ: tracking.typ, created_at: 1.minute.from_now)
+  	create(:availability, cat: tracking.cat, typ: tracking.typ, updated_at: 1.minute.from_now)
 
   	AvailabilityMailer.alert(tracking).deliver_now
 

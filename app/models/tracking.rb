@@ -19,11 +19,13 @@ class Tracking < ApplicationRecord
   belongs_to :sbcat
   belongs_to :typ
 
+  scope :activated, -> { where('created_at > ?', 1.month.ago) }
+
   def availabilities
   	Availability.where cat: cat, typ: typ, expired: false
   end
 
   def new_availabilities
-  	last_notification_at ? availabilities.where('created_at > ?', last_notification_at) : availabilities
+  	last_notification_at ? availabilities.where('updated_at > ?', last_notification_at) : availabilities
   end
 end

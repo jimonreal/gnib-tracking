@@ -10,7 +10,7 @@ class SeekAvailabilitiesWorker
     	typ: typ
     ).call
 
-    Tracking.where(cat: cat, typ: typ).where('created_at > ?', 1.month.ago).each do |tracking|
+    Tracking.where(cat: cat, typ: typ).activated.each do |tracking|
     	AvailabilityMailer.alert(tracking).deliver_later unless tracking.new_availabilities.empty?
     end
   end

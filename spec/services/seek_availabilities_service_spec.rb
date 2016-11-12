@@ -48,7 +48,7 @@ describe SeekAvailabilitiesService, type: :service do
     end
 
     it 'just update the existent availabilities' do
-      availability = create(:availability, cat: cat, typ: typ, external_id: 'E0E9D13A423F8EDC8025805A001B7B8E', datetime: DateTime.parse("23 December 2016 - 08:00 AM"))
+      availability = create(:availability, cat: cat, typ: typ, datetime: DateTime.parse("23 December 2016 - 08:00 AM"))
 
       stub_request(:any, /.*/).to_return(body: '{"slots":[{"time":"23 December 2016 - 08:00 AM", "id":"E0E9D13A423F8EDC8025805A001B7B8E"}, {"time":"23 December 2016 - 10:00 AM", "id":"9E0E2ED8425BF7BC8025805A001B7BAE"}]}')
 

@@ -15,19 +15,25 @@ class SeekAvailabilitiesService
     if res.body.present?
       json = JSON.parse(res.body) 
       valids = []
+      
       if json.has_key? 'slots'
         json['slots'].each do |data|
-          slot =  Availability.where(external_id: data['id']).first ||
-                  Availability.create!(
-                    external_id: data['id'],
-                    cat: @cat,
-                    typ: @typ,
-                    datetime: DateTime.parse(data['time'])
-                  )
+          slot = Availability.where(
+            cat: @cat,
+            typ: @typ,
+            datetime: DateTime.parse(data['time'])
+          ).first_or_create!
+
+          slot.update! external_id: data['id'], expired: false
+
           valids << slot
         end
       end
-      Availability.where(cat: @cat, typ: @typ).where.not(id: valids).update_all(expired: true)
+
+      Availability
+          .where(cat: @cat, typ: @typ)
+          .where.not(id: valids)
+          .update_all(expired: true)
     end
   end
 end

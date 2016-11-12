@@ -11,6 +11,7 @@
 
 FactoryGirl.define do
   factory :sbcat do
-    
+  	name Faker::Commerce.product_name
+    cat
   end
 end

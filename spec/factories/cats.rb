@@ -10,6 +10,6 @@
 
 FactoryGirl.define do
   factory :cat do
-    
+    name Faker::Commerce.product_name
   end
 end

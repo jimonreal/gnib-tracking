@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161106172153) do
+ActiveRecord::Schema.define(version: 20161111040129) do
 
   create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cat_id"
@@ -39,12 +39,13 @@ ActiveRecord::Schema.define(version: 20161106172153) do
   end
 
   create_table "trackings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",              null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "cat_id"
     t.integer  "sbcat_id"
     t.integer  "typ_id"
+    t.datetime "last_notification_at"
     t.index ["cat_id"], name: "index_trackings_on_cat_id", using: :btree
     t.index ["sbcat_id"], name: "index_trackings_on_sbcat_id", using: :btree
     t.index ["typ_id"], name: "index_trackings_on_typ_id", using: :btree

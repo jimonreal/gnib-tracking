@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'bundler', '>= 1.8.4'
 
@@ -60,6 +60,7 @@ group :development, :test do
   gem 'webmock'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :development do

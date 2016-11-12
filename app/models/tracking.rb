@@ -18,4 +18,12 @@ class Tracking < ApplicationRecord
   belongs_to :cat
   belongs_to :sbcat
   belongs_to :typ
+
+  def availabilities
+  	Availability.where cat: cat, typ: typ, expired: false
+  end
+
+  def new_availabilities
+  	last_notification_at ? availabilities.where('created_at > ?', last_notification_at) : availabilities
+  end
 end

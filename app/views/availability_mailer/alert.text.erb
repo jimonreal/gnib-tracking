@@ -1,0 +1,10 @@
+Hi <%= @tracking.user.name %>,
+
+The follow new appointments are available to Immigration Registration Service for category <%= @tracking.cat.name %>, subcategory <%= @tracking.sbcat.name %> and type <%= @tracking.typ.name %>
+
+<% @tracking.new_availabilities.each do |availability| %>
+- <%= l availability.datetime %>
+<% end %>
+
+Good luck!
+

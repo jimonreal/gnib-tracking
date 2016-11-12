@@ -10,6 +10,6 @@
 
 FactoryGirl.define do
   factory :typ do
-    
+    name ["New", "Renewal"].sample
   end
 end

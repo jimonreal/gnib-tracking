@@ -5,14 +5,14 @@ class TrackingsController < ApplicationController
     @tracking = Tracking.new
     @tracking.build_user
 
-    @availabilities = Availability.where created_at: (1.week.ago)..(1.seconds.ago)
+    @availabilities = Availability.where created_at: (1.week.ago)..(Time.now)
 
     if params[:tracking]
       @availabilities = @availabilities.where(cat_id: params[:tracking][:cat_id]) if params[:tracking][:cat_id].present?
       @availabilities = @availabilities.where(typ_id: params[:tracking][:typ_id]) if params[:tracking][:typ_id].present?
     end
 
-    @chart_data = @availabilities.group_by_hour(:created_at).count
+    @chart_data = @availabilities.group_by_hour(:created_at, range: (1.week.ago)..(Time.now)).count
     @current_availabilities = @availabilities.where.not(expired: true)
 
   end

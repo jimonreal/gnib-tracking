@@ -47,6 +47,8 @@ en:
         success: "%{resource_name} was successfully destroyed."
         error: "%{resource_name} could not be destroyed."
 
+  title: Find an Appointments for GNIB
+
   trackings:
     new:
       title: Find an Appointments for GNIB
@@ -55,6 +57,7 @@ en:
         yaxis: 'Total'
       availabilities_count: '%{count} appointments currently available'
       appointment_selection_title: Select the Appointment Type
+      choose_an_appointment_type: Choose an Appointment Type
       receive_an_alert_title: 'Receive an alert on new availabilities'
       receive_an_alert_description: 'Receive a e-mail when new appointments of selected type are available'
       availability_history: 'Availability History'

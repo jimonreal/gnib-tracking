@@ -1,24 +1,24 @@
-# README
+# GNIB Tracking
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+----
+## Requirements
 
-Things you may want to cover:
+Before you get started, the Docker environment needs to be installed
 
-* Ruby version
+----
+## Running
 
-* System dependencies
+1. Run `docker-compose up -d`
+2. Access `http://localhost/` in a web browser
 
-* Configuration
+----
+## Deploy
 
-* Database creation
+1. Set-up the follow environment variables:
+	
+		RANCHER_URL=<Rancher Server URL>
+		RANCHER_ACCESS_KEY=<Access Key>
+		RANCHER_SECRET_KEY=<Secret Key>
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+2. Rename the file `production.env.sample` to `production.env` and fill the gaps
+3. Run `rancher-compose up -d --pull --force-upgrade`

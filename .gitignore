@@ -22,3 +22,6 @@
 
 # Mysql data
 data
+
+# Ignore secure envirnment variables
+production.env

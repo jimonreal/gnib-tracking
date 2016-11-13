@@ -47,11 +47,11 @@ en:
         success: "%{resource_name} was successfully destroyed."
         error: "%{resource_name} could not be destroyed."
 
-  title: Find an Appointments for GNIB
+  title: Find an Appointment for GNIB
 
   trackings:
     new:
-      title: Find an Appointments for GNIB
+      title: Find an Appointment for GNIB
       subtitle: in the Booking System for Immigration Registration of Dublin
       chart:
         yaxis: 'Total'

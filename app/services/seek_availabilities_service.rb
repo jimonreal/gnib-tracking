@@ -24,7 +24,7 @@ class SeekAvailabilitiesService
             datetime: DateTime.parse(data['time'])
           ).first_or_create!
 
-          slot.update! external_id: data['id'], expired: false
+          slot.update! external_id: data['id'], expired: false if slot.expired
 
           valids << slot
         end

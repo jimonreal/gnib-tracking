@@ -23,8 +23,9 @@ en:
   activerecord:
     attributes:
       user:
-        email: 'E-mail'
-        eula: "I agree to receive emails (including the Lee Spring's eNewsletter, as well as promotional offers and surveys from Lee Spring.)"
+        name: 'Your name'
+        email: 'Your email'
+        eula: "I agree to receive emails (including the promotional offers and surveys)"
       tracking:
         cat: 'Category'
         sbcat: 'Sub Category'
@@ -33,7 +34,7 @@ en:
   helpers:
     submit:
       tracking:
-        create: "Let me know"
+        create: "Alert me"
 
   flash:
     actions:
@@ -48,6 +49,12 @@ en:
 
   trackings:
     new:
+      title: Find an Appointments for GNIB
+      subtitle: in the Booking System for Immigration Registration of Dublin
       chart:
         yaxis: 'Total'
       availabilities_count: '%{count} appointments currently available'
+      appointment_selection_title: Select the Appointment Type
+      receive_an_alert_title: 'Receive an alert on new availabilities'
+      receive_an_alert_description: 'Receive a e-mail when new appointments of selected type are available'
+      availability_history: 'Availability History'

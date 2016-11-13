@@ -1,2 +1,5 @@
 Chartkick.LineChart("chart-1", <%= @chart_data.to_json.html_safe %>)
-$('h4.total').text(I18n.t('trackings.new.availabilities_count', {count: <%= @current_availabilities.count %>}))
+var enabled = <%= @tracking.cat && @tracking.sbcat && @tracking.typ ? true : false %>
+
+$('.tracking-form .panel-heading').toggle(!enabled);
+$('.tracking-form .panel-body').toggleClass('blocked', !enabled);

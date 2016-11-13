@@ -222,6 +222,12 @@ a:focus {
 	margin-bottom: 25px;
 }
 
+#headerwrap h1 span {
+  display: block;
+  font-weight: lighter;	
+  font-size: .70em;
+}
+
 #headerwrap .img-responsive {
 	margin: 0 auto;
 }
@@ -462,4 +468,10 @@ csmall2 {
 .panel h3 {
     color: black !important;
     margin: 10px 0 30px 0;
+}
+
+.blocked {
+  z-index: 1000;
+  opacity: 0.3;
+  pointer-events: none;
 }

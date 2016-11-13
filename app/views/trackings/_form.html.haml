@@ -1,7 +1,7 @@
 = simple_form_for @tracking, remote: true do |f|
   .panel.panel-default
     .panel-body
-      %h3 Appointment Selection
+      %h3= t 'trackings.new.appointment_selection_title'
       .row
         .col-md-4
           = f.association :cat
@@ -10,20 +10,22 @@
         .col-md-4
           = f.association :typ
 
-      .panel.panel-info
+      .panel.panel-info.tracking-form
         .panel-heading
-          %h4.total= t 'trackings.new.availabilities_count', count: @current_availabilities.count
+          %h4.choose-type
+            %i.fa.fa-share.fa-rotate-270{'aria-hidden'=>"true"}
+            %span= t 'trackings.new.choose_an_appointment_type'
+        .panel-body{'class' => ('blocked' unless @tracking.cat && @tracking.sbcat && @tracking.typ)}
+          %h3
+            %i.fa.fa-bell.fa-2x{'aria-hidden'=>"true"}
+          %h3= t 'trackings.new.receive_an_alert_title'
+          %p= t 'trackings.new.receive_an_alert_description'
+          .form-horizontal
+            = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+              = f.input :name, wrapper: :horizontal_form
+              = f.input :email, wrapper: :horizontal_form
+              = f.input :eula, as: :boolean, wrapper: :horizontal_boolean
+            = f.button :submit, class: "btn btn-lg btn-primary"
       
-      %h4 Availability History
+      %h4= t 'trackings.new.availability_history'
       = line_chart @chart_data, label: t('trackings.new.chart.yaxis'), height: '150px'
-
-  .panel.panel-info.tracking-form
-    .panel-body
-      %h3 Track availabilities
-      %p Receive a e-mail when new appointments are available
-      .form-horizontal
-        = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
-          = f.input :name, wrapper: :horizontal_form
-          = f.input :email, wrapper: :horizontal_form
-          = f.input :eula, as: :boolean, wrapper: :horizontal_boolean
-        = f.button :submit, class: "btn btn-lg btn-primary"

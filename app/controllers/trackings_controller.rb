@@ -4,6 +4,8 @@ class TrackingsController < ApplicationController
 
     @tracking = Tracking.new
     @tracking.build_user
+    
+    @tracking.assign_attributes tracking_params if params[:tracking]
 
     @availabilities = Availability.where created_at: (1.week.ago)..(Time.now)
 

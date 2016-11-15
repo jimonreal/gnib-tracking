@@ -9,6 +9,10 @@
     .row
       #form.col-lg-8.col-lg-offset-2
         = render 'form'
+  %footer
+    = t 'contact_me'
+    = link_to 'me@brunobispo.com', 'mailto:me@brunobispo.com'
+
 
 :javascript
   var sbcats = #{Sbcat.all.group_by(&:cat_id).to_json};

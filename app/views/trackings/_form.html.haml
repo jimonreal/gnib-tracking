@@ -11,7 +11,7 @@
           = f.association :typ
 
       .panel.panel-info.tracking-form
-        .panel-heading
+        .panel-heading{'style' => ('display:none;' if @tracking.cat && @tracking.sbcat && @tracking.typ)}
           %h4.choose-type
             %i.fa.fa-share.fa-rotate-270{'aria-hidden'=>"true"}
             %span= t 'trackings.new.choose_an_appointment_type'

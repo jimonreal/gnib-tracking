@@ -11,7 +11,8 @@ class SeekAvailabilitiesWorker
     ).call
 
     Tracking.where(cat: cat, typ: typ).activated.each do |tracking|
-    	AvailabilityMailer.alert(tracking).deliver_later unless tracking.new_availabilities.empty?
+      next unless tracking.new_availabilities.present?
+    	TrackingMailer.alert(tracking).deliver_later and tracking.mark_as_notified!
     end
   end
 end

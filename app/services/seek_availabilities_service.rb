@@ -30,10 +30,8 @@ class SeekAvailabilitiesService
         end
       end
 
-      Availability
-          .where(cat: @cat, typ: @typ)
-          .where.not(id: valids)
-          .update_all(expired: true)
+      expired = Availability.where(cat: @cat, typ: @typ).where.not(id: valids)
+      Availability.where(id: expired).update_all(expired: true)
     end
   end
 end

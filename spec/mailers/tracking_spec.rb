@@ -1,10 +1,10 @@
 require "rails_helper"
 
-describe AvailabilityMailer, type: :mailer do
+describe TrackingMailer, type: :mailer do
   let (:tracking) { create(:tracking_with_availabilities) }
 
   it 'send a notification email with all availabilities' do
-    AvailabilityMailer.alert(tracking).deliver_now
+    TrackingMailer.alert(tracking).deliver_now
 
     expect(ActionMailer::Base.deliveries.count).to eq(1)
     email = ActionMailer::Base.deliveries.first
@@ -18,13 +18,13 @@ describe AvailabilityMailer, type: :mailer do
   end
 
   it "just send notifications about new notifications" do
-  	AvailabilityMailer.alert(tracking).deliver_now
+  	TrackingMailer.alert(tracking).deliver_now
   	
   	tracking.reload
 
   	create(:availability, cat: tracking.cat, typ: tracking.typ, updated_at: 1.minute.from_now)
 
-  	AvailabilityMailer.alert(tracking).deliver_now
+  	TrackingMailer.alert(tracking).deliver_now
 
   	email = ActionMailer::Base.deliveries.last
 

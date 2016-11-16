@@ -31,7 +31,7 @@ class SeekAvailabilitiesService
       end
 
       expired = Availability.where(cat: @cat, typ: @typ).where.not(id: valids)
-      Availability.where(id: expired).update_all(expired: true)
+      Availability.where(id: expired.pluck(:id)).update_all(expired: true)
     end
   end
 end

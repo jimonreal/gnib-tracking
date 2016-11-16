@@ -29,7 +29,7 @@ class TrackingsController < ApplicationController
     if @tracking.valid?
       flash.now[:success] = I18n.t('flash.actions.create.success', resource_name: Tracking.model_name.human)
       @tracking = Tracking.new
-      @tracking.build_user    
+      @tracking.build_user
     else
       flash.now[:error] = I18n.t('flash.actions.create.error', resource_name: Tracking.model_name.human)
     end

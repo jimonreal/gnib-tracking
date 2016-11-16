@@ -28,4 +28,8 @@ class Tracking < ApplicationRecord
   def new_availabilities
   	last_notification_at ? availabilities.where('updated_at > ?', last_notification_at) : availabilities
   end
+
+  def mark_as_notified!
+    update! last_notification_at: DateTime.now
+  end
 end

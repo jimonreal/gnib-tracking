@@ -35,6 +35,14 @@ describe TrackingMailer, type: :mailer do
     expect(email.body.raw_source).to include(I18n.l tracking.availabilities.last.datetime)
   end
 
+  it "don't send notifications if there is no availability" do
+    tracking = create(:tracking)
+    
+    TrackingMailer.alert(tracking).deliver_now
+
+    expect(ActionMailer::Base.deliveries.count).to eq(0)
+  end
+
   describe "Welcome email" do
     it do
       tracking = create(:tracking)

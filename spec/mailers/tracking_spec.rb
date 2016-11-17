@@ -13,6 +13,7 @@ describe TrackingMailer, type: :mailer do
     expect(email.body.raw_source).to include(tracking.cat.name)
     expect(email.body.raw_source).to include(tracking.typ.name)
     expect(email.body.raw_source).to include('https://burghquayregistrationoffice.inis.gov.ie/')
+    expect(email.body.raw_source).to include(deregister_tracking_url tracking.token)
     tracking.availabilities.each do |availability|
       expect(email.body.raw_source).to include(I18n.l availability.datetime)
     end
@@ -46,6 +47,7 @@ describe TrackingMailer, type: :mailer do
       expect(email.body.raw_source).to include(tracking.user.name)
       expect(email.body.raw_source).to include(tracking.cat.name)
       expect(email.body.raw_source).to include(tracking.typ.name)
+      expect(email.body.raw_source).to include(deregister_tracking_url tracking.token)
     end
 
     context 'when has availabilities' do

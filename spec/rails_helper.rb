@@ -82,4 +82,6 @@ RSpec.configure do |config|
   end
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.include Rails.application.routes.url_helpers
 end

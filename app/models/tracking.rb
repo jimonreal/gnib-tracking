@@ -19,7 +19,9 @@ class Tracking < ApplicationRecord
   belongs_to :sbcat
   belongs_to :typ
 
-  scope :activated, -> { where('created_at > ?', 1.month.ago) }
+  has_secure_token
+
+  scope :activated, -> { where('created_at > ?', 1.month.ago).where(active: true) }
 
   def availabilities
   	Availability.where cat: cat, typ: typ, expired: false
@@ -31,5 +33,9 @@ class Tracking < ApplicationRecord
 
   def mark_as_notified!
     update! last_notification_at: DateTime.now
+  end
+
+  def deregister!
+    update! active: false
   end
 end

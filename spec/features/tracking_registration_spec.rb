@@ -17,9 +17,19 @@ feature 'Public registration of a new tracking', type: :feature, js: true do
 
     click_button "Alert me"
 
-    expect(page).to have_text("Tracking was successfully created.")
+    expect(page).to have_text("Tracking was successfully created")
 
     # expect(ActionMailer::Base.deliveries.count).to eq(1)
 
 	end
+end
+
+feature 'Unregistration of a tracking', type: :feature do
+  scenario 'visitor visit the unregistration page' do
+    tracking = create(:tracking)
+
+    visit deregister_tracking_path(tracking.token)
+
+    expect(page).to have_text("Tracking was successfully deregistered")    
+  end
 end

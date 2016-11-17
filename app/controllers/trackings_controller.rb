@@ -1,6 +1,6 @@
 class TrackingsController < ApplicationController
 
-  before_action do
+  before_action except: :deregister do
 
     @tracking = Tracking.new
     @tracking.build_user
@@ -38,6 +38,11 @@ class TrackingsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def deregister
+    @tracking = Tracking.find_by_token params[:id]
+    @tracking.deregister!
   end
 
   protected

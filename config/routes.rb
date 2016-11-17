@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   	collection do
 			get 'preview'
 		end
+    member do
+      get 'deregister'
+    end
   end
 
 	mount Sidekiq::Web => '/sidekiq'

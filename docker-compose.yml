@@ -17,6 +17,7 @@ web:
     SECRET_KEY_BASE: abcdefg
     RAILS_ENV: development
     MYSQL_ROOT_PASSWORD: mypass
+    HOST_URL: localhost
   links:
     - db
     - redis
@@ -29,6 +30,7 @@ worker:
     SECRET_KEY_BASE: abcdefg
     RAILS_ENV: development
     MYSQL_ROOT_PASSWORD: mypass
+    HOST_URL: localhost
   links:
     - db
     - redis

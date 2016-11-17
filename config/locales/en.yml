@@ -63,3 +63,6 @@ en:
       receive_an_alert_title: 'Receive an alert on new availabilities'
       receive_an_alert_description: 'Receive a e-mail when new appointments of selected type are available'
       availability_history: 'Availability History'
+    deregister:
+      title: 'Tracking was successfully deregistered'
+      subtitle: 'No new alert will be sent for that appointment type ;)'

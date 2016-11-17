@@ -19,6 +19,6 @@ module App
 
     config.active_job.queue_adapter = :sidekiq
     config.action_mailer.perform_deliveries = true
-    config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
+    config.action_mailer.default_url_options = { host: ENV['HOST_URL'] || 'localhost' }
   end
 end

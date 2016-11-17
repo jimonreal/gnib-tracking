@@ -14,7 +14,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', '<%= ENV['ANALYTICS_TRACKING_ID'] %>', 'auto');
+      ga('create', '#{ENV['ANALYTICS_TRACKING_ID']}', 'auto');
       ga('send', 'pageview');
 
     - flash.each do |key, value|

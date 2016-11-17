@@ -19,5 +19,7 @@ feature 'Public registration of a new tracking', type: :feature, js: true do
 
     expect(page).to have_text("Tracking was successfully created.")
 
+    # expect(ActionMailer::Base.deliveries.count).to eq(1)
+
 	end
 end

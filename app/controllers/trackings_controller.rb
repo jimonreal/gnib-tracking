@@ -16,7 +16,6 @@ class TrackingsController < ApplicationController
 
     @chart_data = @availabilities.group_by_hour(:created_at, range: (1.week.ago)..(Time.now)).count
     @current_availabilities = @availabilities.where.not(expired: true)
-
   end
 
   def new; end
@@ -28,6 +27,8 @@ class TrackingsController < ApplicationController
 
     if @tracking.valid?
       flash.now[:success] = I18n.t('flash.actions.create.success', resource_name: Tracking.model_name.human)
+      TrackingMailer.welcome(@tracking).deliver_later
+
       @tracking = Tracking.new
       @tracking.build_user
     else

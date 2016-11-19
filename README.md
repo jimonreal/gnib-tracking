@@ -1,24 +1,23 @@
 # GNIB Tracking
 
-----
-## Requirements
+GNIB Tracking is a project that follow the INIS Appointment Booking System for Imigration Registration of Dublin and notify their users when new appointments are available. It runs over Docker and can be published easily by Rancher.
 
-Before you get started, the Docker environment needs to be installed
+## Installation
 
-----
-## Running
+Before you get started, the Docker environment needs to be installed.
 
-1. Run `docker-compose up -d`
-2. Access `http://localhost/` in a web browser
+### Launching
 
-----
-## Deploy
+    docker-compose up -d
 
-1. Set-up the follow environment variables:
-	
-		RANCHER_URL=<Rancher Server URL>
-		RANCHER_ACCESS_KEY=<Access Key>
-		RANCHER_SECRET_KEY=<Secret Key>
+The UI are available on `http://localhost/`
 
+## Publishing
+
+Before you get published, the Rancher environment needs to be installed.
+
+### Deploy
+
+1. Set-up the `RANCHER_URL`, `RANCHER_ACCESS_KEY` and `RANCHER_SECRET_KEY` variables
 2. Rename the file `production.env.sample` to `production.env` and fill the gaps
 3. Run `rancher-compose up -d --pull --force-upgrade`

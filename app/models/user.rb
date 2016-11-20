@@ -12,4 +12,6 @@
 class User < ApplicationRecord
 	validates_presence_of :email, :name
 	validates :eula, acceptance: true
+
+  has_many :trackings
 end

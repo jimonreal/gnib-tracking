@@ -38,4 +38,13 @@ class Tracking < ApplicationRecord
   def deregister!
     update! active: false
   end
+
+  def autosave_associated_records_for_user
+    if new_user = User.find_by_email(user.email)
+      self.user = new_user
+    else
+      user.save!
+      self.user = user
+    end
+  end
 end

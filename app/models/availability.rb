@@ -15,4 +15,11 @@
 class Availability < ApplicationRecord
   belongs_to :cat
   belongs_to :typ
+
+  scope :unexpired, -> { where(expired_at: nil) }
+  scope :expired, -> { where.not(expired_at: nil) }
+
+  def expired?
+    expired_at.present?
+  end
 end

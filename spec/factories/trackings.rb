@@ -17,6 +17,7 @@ FactoryGirl.define do
     cat
     typ
     sbcat
+    created_at 1.second.ago
 
     factory :tracking_with_availabilities do
       transient do

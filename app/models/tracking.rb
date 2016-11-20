@@ -24,11 +24,11 @@ class Tracking < ApplicationRecord
   scope :activated, -> { where('created_at > ?', 1.month.ago).where(active: true) }
 
   def availabilities
-  	Availability.where cat: cat, typ: typ, expired: false
+  	Availability.where cat: cat, typ: typ
   end
 
   def new_availabilities
-  	last_notification_at ? availabilities.where('updated_at > ?', last_notification_at) : availabilities
+  	availabilities.where('updated_at > ?', last_notification_at || created_at)
   end
 
   def mark_as_notified!

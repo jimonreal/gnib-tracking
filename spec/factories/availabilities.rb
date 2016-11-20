@@ -16,7 +16,7 @@ FactoryGirl.define do
   factory :availability do
     cat
     typ
-    datetime { DateTime.now }
-    expired false
+    datetime { rand(0..256).seconds.from_now }
+    expired_at nil
   end
 end

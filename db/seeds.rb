@@ -65,6 +65,6 @@ if Rails.env.development?
       created_at: rand((7.days.ago)..(1.second.ago)),
       datetime: rand((1.months.from_now)..(2.months.from_now))
     )
-    Availability.where(cat: created.cat, typ: created.typ).where.not(id: created.id).update_all(expired: true)
+    Availability.where(cat: created.cat, typ: created.typ).where.not(id: created.id).update_all(expired_at: rand(0..240).minutes.from_now)
   end
 end

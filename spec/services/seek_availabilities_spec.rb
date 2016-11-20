@@ -53,7 +53,7 @@ describe SeekAvailabilitiesService, type: :service do
       stub_request(:any, /.*/).to_return(body: '{"slots":[{"time":"23 December 2016 - 08:00 AM", "id":"E0E9D13A423F8EDC8025805A001B7B8E"}, {"time":"23 December 2016 - 10:00 AM", "id":"9E0E2ED8425BF7BC8025805A001B7BAE"}]}')
 
       expect{ SeekAvailabilitiesService.new(cat: cat, typ: typ).call }.to change{ Availability.count }.from(1).to(2)
-      expect(availability.reload.expired).to be false
+      expect(availability.reload.expired?).to be false
     end
   end
 
@@ -74,8 +74,8 @@ describe SeekAvailabilitiesService, type: :service do
 
       SeekAvailabilitiesService.new(cat: cat, typ: typ).call
 
-      expect(availability1.reload.expired).to be true
-      expect(availability2.reload.expired).to be false
+      expect(availability1.reload.expired?).to be true
+      expect(availability2.reload.expired?).to be false
     end
   end
 end

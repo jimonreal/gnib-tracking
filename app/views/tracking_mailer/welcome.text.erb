@@ -1,11 +1,11 @@
 Hi <%= @tracking.user.name %>,
 
 A new tracking has been created for category <%= @tracking.cat.name %>, subcategory <%= @tracking.sbcat.name %> and type <%= @tracking.typ.name %>. You'll be alerted when new appointments are available.
-<% if @tracking.new_availabilities.present? %>
+<% if @tracking.availabilities.unexpired.present? %>
 
 Currently the following appointments are available:
 
-<% @tracking.new_availabilities.each do |availability| %>
+<% @tracking.availabilities.unexpired.each do |availability| %>
 - <%= l availability.datetime %>
 <% end %>
 

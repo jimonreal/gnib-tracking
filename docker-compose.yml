@@ -17,6 +17,9 @@ web:
     SECRET_KEY_BASE: abcdefg
     RAILS_ENV: development
     MYSQL_ROOT_PASSWORD: mypass
+    SMTP_EMAIL: gnib@brunobispo.com
+    SMTP_USERNAME: AKIAIXJFULESZCXHXPOA
+    SMTP_PASSWORD: AtrmUsye+QlF9nTJ4QLXlYz0m5nY4FkE1AgvKICtnbUz
   links:
     - db
     - redis
@@ -29,6 +32,9 @@ worker:
     SECRET_KEY_BASE: abcdefg
     RAILS_ENV: development
     MYSQL_ROOT_PASSWORD: mypass
+    SMTP_EMAIL: gnib@brunobispo.com
+    SMTP_USERNAME: AKIAIXJFULESZCXHXPOA
+    SMTP_PASSWORD: AtrmUsye+QlF9nTJ4QLXlYz0m5nY4FkE1AgvKICtnbUz
   links:
     - db
     - redis

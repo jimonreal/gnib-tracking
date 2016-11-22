@@ -21,7 +21,7 @@ class Tracking < ApplicationRecord
 
   has_secure_token
 
-  scope :activated, -> { where('created_at > ?', 1.month.ago).where(active: true) }
+  scope :active, -> { where('created_at > ?', 1.month.ago).where(active: true) }
 
   def availabilities
   	Availability.where cat: cat, typ: typ

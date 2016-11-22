@@ -5,7 +5,7 @@ class NotifyTrackingsService
   end
 
   def call
-    Tracking.where(cat: @cat, typ: @typ).each do |tracking|
+    Tracking.active.where(cat: @cat, typ: @typ).each do |tracking|
       next if tracking.new_availabilities.empty?
       
       TrackingMailer.alert(tracking).deliver_later

@@ -81,4 +81,12 @@ describe TrackingMailer, type: :mailer do
     expect(ActionMailer::Base.deliveries.count).to eq(0)
   end
 
+  it "don't send notifications if the tracking is inactive" do
+    tracking = create(:tracking_with_availabilities, active: false)
+    
+    TrackingMailer.alert(tracking).deliver_now
+
+    expect(ActionMailer::Base.deliveries.count).to eq(0)
+  end
+
 end

@@ -1,6 +1,8 @@
 class TrackingMailer < ApplicationMailer
 
   def alert(tracking)
+    return unless tracking.active?
+
     @tracking = tracking
 
     mail to: @tracking.user.email, subject: 'New Appointments Available' unless @tracking.new_availabilities.empty?

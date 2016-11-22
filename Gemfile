@@ -47,6 +47,8 @@ gem "groupdate"
 
 gem 'i18n-js'
 
+gem 'redis-mutex'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-highcharts'
   gem 'rails-assets-toastr'

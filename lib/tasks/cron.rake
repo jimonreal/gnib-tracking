@@ -5,7 +5,7 @@ namespace :cron do
     	ActiveRecord::Base.logger.silence do
       	Typ.all.each do |typ|
           Cat.all.each do |cat|
-            Sidekiq::Cron::Job.create(name: "Seeking #{cat.name} - #{typ.name}", args: {cat_id: cat.id, typ_id: typ.id}, cron: '*/15 * * * *', class: 'SeekAvailabilitiesWorker')
+            Sidekiq::Cron::Job.create(name: "Seeking #{cat.name} - #{typ.name}", args: [cat.id, typ.id], cron: '*/5 * * * *', class: 'SeekAvailabilitiesWorker')
           end
         end
       end

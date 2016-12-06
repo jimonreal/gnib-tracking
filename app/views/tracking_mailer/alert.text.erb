@@ -1,16 +1,14 @@
-Hi <%= @tracking.user.name %>,
+<%= t 'tracking_mailer.alert.hi', name: @tracking.user.name %>
 
-The follow new appointments are available to Immigration Registration Service for category <%= @tracking.cat.name %>, subcategory <%= @tracking.sbcat.name %> and type <%= @tracking.typ.name %>
+<%= t 'tracking_mailer.alert.body', cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name %>
 
 <% @tracking.new_availabilities.each do |availability| %>
 - <%= l availability.datetime %>
 <% end %>
 
-Visit and try to schedule your appointment:
-https://burghquayregistrationoffice.inis.gov.ie/
+<%= t 'tracking_mailer.alert.visit_burgh_quay_registration_office', link: 'https://burghquayregistrationoffice.inis.gov.ie/' %>
 
-Good luck!
+<%= t 'tracking_mailer.alert.good_luck' %>
 
 ----
-If you want to stop receiving this email access:
-<%= deregister_tracking_url id: @tracking.token %>
+<%= t 'tracking_mailer.alert.stop_receiving', link: deregister_tracking_url(id: @tracking.token) %>

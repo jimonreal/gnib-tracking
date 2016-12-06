@@ -2,13 +2,16 @@
 #
 # Table name: trackings
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  cat_id     :integer
-#  sbcat_id   :integer
-#  typ_id     :integer
+#  id                   :integer          not null, primary key
+#  user_id              :integer          not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  cat_id               :integer
+#  sbcat_id             :integer
+#  typ_id               :integer
+#  last_notification_at :datetime
+#  token                :string(255)
+#  active               :boolean          default(TRUE)
 #
 
 class Tracking < ApplicationRecord
@@ -40,8 +43,9 @@ class Tracking < ApplicationRecord
   end
 
   def autosave_associated_records_for_user
-    if new_user = User.find_by_email(user.email)
-      self.user = new_user
+    if old_user = User.find_by_email(user.email)
+      old_user.update_attributes user.attributes.except('id', 'created_at', 'updated_at')
+      self.user = old_user
     else
       user.save!
       self.user = user

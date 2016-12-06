@@ -27,12 +27,14 @@ describe TrackingMailer, type: :mailer do
 
         email = ActionMailer::Base.deliveries.first
 
-        tracking.new_availabilities.unexpired.each do |availability|
-          expect(email.body.raw_source).to include(I18n.l availability.datetime)
-        end
+        I18n.with_locale(tracking.user.locale) do
+          tracking.new_availabilities.unexpired.each do |availability|
+            expect(email.body.raw_source).to include(I18n.l availability.datetime)
+          end
 
-        tracking.new_availabilities.expired.each do |availability|
-          expect(email.body.raw_source).to_not include(I18n.l availability.datetime)
+          tracking.new_availabilities.expired.each do |availability|
+            expect(email.body.raw_source).to_not include(I18n.l availability.datetime)
+          end
         end
 
         expect(email.body.raw_source).to include('https://burghquayregistrationoffice.inis.gov.ie/')
@@ -52,8 +54,10 @@ describe TrackingMailer, type: :mailer do
     expect(email.body.raw_source).to include('https://burghquayregistrationoffice.inis.gov.ie/')
     expect(email.body.raw_source).to include(deregister_tracking_url tracking.token)
     
-    tracking.availabilities.each do |availability|
-      expect(email.body.raw_source).to include(I18n.l availability.datetime)
+    I18n.with_locale(tracking.user.locale) do
+      tracking.availabilities.each do |availability|
+        expect(email.body.raw_source).to include(I18n.l availability.datetime)
+      end
     end
   end
 
@@ -66,11 +70,13 @@ describe TrackingMailer, type: :mailer do
 
     email = ActionMailer::Base.deliveries.last
 
-    tracking.availabilities[0...-1].each do |availability|
-      expect(email.body.raw_source).to_not include(I18n.l availability.datetime)
-    end
+    I18n.with_locale(tracking.user.locale) do
+      tracking.availabilities[0...-1].each do |availability|
+        expect(email.body.raw_source).to_not include(I18n.l availability.datetime)
+      end
 
-    expect(email.body.raw_source).to include(I18n.l tracking.availabilities.last.datetime)
+      expect(email.body.raw_source).to include(I18n.l tracking.availabilities.last.datetime)
+    end
   end
 
   it "don't send notifications if there is no availability" do

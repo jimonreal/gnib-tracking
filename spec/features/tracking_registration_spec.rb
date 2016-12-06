@@ -8,6 +8,8 @@ feature 'Public registration of a new tracking', type: :feature, js: true do
 
     visit root_path
 
+    page.driver.header 'Accept-Language', 'en-AU,en-US;q=0.7,en;q=0.3'
+
     fill_in 'Your name', with: 'Bruno', exact: false
     fill_in 'Your email', with: 'me@brunobispo.com', exact: false
     select 'Study', from: 'Category', match: :first, exact: false
@@ -19,9 +21,8 @@ feature 'Public registration of a new tracking', type: :feature, js: true do
 
     expect(page).to have_text("Tracking was successfully created")
 
-    # expect(ActionMailer::Base.deliveries.count).to eq(1)
-
-    end
+    expect(User.first.locale).to eq('en')
+  end
 
   scenario 'visitor request a different tracking' do
     user = create(:user, email: 'me@brunobispo.com')

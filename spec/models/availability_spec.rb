@@ -8,8 +8,8 @@
 #  datetime    :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  expired     :boolean          default(FALSE)
 #  external_id :string(255)
+#  expired_at  :datetime
 #
 
 require 'rails_helper'

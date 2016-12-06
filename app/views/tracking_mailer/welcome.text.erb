@@ -1,20 +1,18 @@
-Hi <%= @tracking.user.name %>,
+<%= t 'tracking_mailer.welcome.hi', name: @tracking.user.name %>
 
-A new tracking has been created for category <%= @tracking.cat.name %>, subcategory <%= @tracking.sbcat.name %> and type <%= @tracking.typ.name %>. You'll be alerted when new appointments are available.
+<%= t 'tracking_mailer.welcome.body', cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name %>
 <% if @tracking.availabilities.unexpired.present? %>
 
-Currently the following appointments are available:
+<%= t 'tracking_mailer.welcome.currently_are' %>
 
 <% @tracking.availabilities.unexpired.each do |availability| %>
 - <%= l availability.datetime %>
 <% end %>
 
-Visit and try to schedule your appointment:
-https://burghquayregistrationoffice.inis.gov.ie/
+<%= t 'tracking_mailer.welcome.visit_burgh_quay_registration_office', link: 'https://burghquayregistrationoffice.inis.gov.ie/' %>
 <% end %>
 
-Good luck!
+<%= t 'tracking_mailer.welcome.good_luck' %>
 
 ----
-If you want to stop receiving this email access:
-<%= deregister_tracking_url id: @tracking.token %>
+<%= t 'tracking_mailer.welcome.stop_receiving', link: deregister_tracking_url(id: @tracking.token) %>

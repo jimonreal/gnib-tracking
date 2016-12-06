@@ -91,6 +91,7 @@ GEM
       tilt
     hashdiff (0.3.0)
     headless (2.3.1)
+    http_accept_language (2.1.0)
     i18n (0.7.0)
     i18n-js (2.1.2)
       i18n
@@ -151,6 +152,9 @@ GEM
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (5.0.1)
+      i18n (~> 0.7)
+      railties (~> 5.0)
     railties (5.0.0.1)
       actionpack (= 5.0.0.1)
       activesupport (= 5.0.0.1)
@@ -263,6 +267,7 @@ DEPENDENCIES
   groupdate
   haml
   headless
+  http_accept_language
   i18n-js
   jbuilder (~> 2.5)
   jquery-rails
@@ -273,6 +278,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-assets-highcharts!
   rails-assets-toastr!
+  rails-i18n (~> 5.0.0)
   redis-mutex
   responders
   rspec-rails (~> 3.5)

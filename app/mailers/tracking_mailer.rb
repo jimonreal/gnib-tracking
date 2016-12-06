@@ -5,13 +5,17 @@ class TrackingMailer < ApplicationMailer
 
     @tracking = tracking
 
-    mail to: @tracking.user.email, subject: 'New Appointments Available' unless @tracking.new_availabilities.empty?
+    I18n.with_locale(tracking.user.locale) do
+      mail to: @tracking.user.email, subject: I18n.t('tracking_mailer.alert.title') unless @tracking.new_availabilities.empty?
+    end
   end
 
   def welcome(tracking)
     @tracking = tracking
 
-    mail to: @tracking.user.email, subject: 'A new tracking has been created'
+    I18n.with_locale(tracking.user.locale) do
+      mail to: @tracking.user.email, subject: I18n.t('tracking_mailer.welcome.title')
+    end
   end
 
 end

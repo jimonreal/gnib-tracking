@@ -66,3 +66,28 @@ en:
     deregister:
       title: 'Tracking was successfully deregistered'
       subtitle: 'No new alert will be sent for that appointment type ;)'
+
+  tracking_mailer:
+    alert:
+      title: 'New Appointments Available'
+      hi: 'Hi, %{name}'
+      body: The follow new appointments are available to Immigration Registration Service for category %{cat}, subcategory %{sbcat} and type %{typ}
+      visit_burgh_quay_registration_office: |
+        Visit and try to schedule your appointment:
+        %{link}
+      good_lock: Good luck!
+      stop_receiving: |
+        If you want to stop receiving this email access:
+        %{link}
+    welcome:
+      title: 'A new tracking has been created'
+      hi: 'Hi, %{name}'
+      body: "A new tracking has been created for category %{cat}, subcategory %{sbcat} and type %{typ}. You'll be alerted when new appointments are available."
+      currently_are: 'Currently the following appointments are available:'
+      visit_burgh_quay_registration_office: |
+        Visit and try to schedule your appointment:
+        %{link}
+      good_lock: Good luck!
+      stop_receiving: |
+        If you want to stop receiving this email access:
+        %{link}

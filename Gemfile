@@ -49,6 +49,10 @@ gem 'i18n-js'
 
 gem 'redis-mutex'
 
+gem 'http_accept_language'
+
+gem 'rails-i18n', '~> 5.0.0'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-highcharts'
   gem 'rails-assets-toastr'

@@ -1,0 +1,93 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+pt-BR:
+  activerecord:
+    attributes:
+      user:
+        name: 'Seu nome'
+        email: 'Seu email'
+        eula: "Eu aceito receber e-mails (incluindo ofertas promocionais e pesquisas)"
+      tracking:
+        cat: 'Categoria'
+        sbcat: 'Subcategoria'
+        typ: 'Tipo'
+
+  helpers:
+    submit:
+      tracking:
+        create: "Me alerte"
+
+  flash:
+    actions:
+      create:
+        success: "%{resource_name} foi criado com sucesso"
+        error: "%{resource_name} não pode ser criado."
+      update:
+        success: "%{resource_name} foi atualizado com sucesso."
+      destroy:
+        success: "%{resource_name} foi excluído com sucesso."
+        error: "%{resource_name} não pode ser excluído."
+
+  title: Encontre uma vaga para o GNIB
+
+  contact_me: Dúvidas ou sugestões? Envie um email para
+
+  trackings:
+    new:
+      title: Encontre uma vaga para o GNIB
+      subtitle: no sistema de reservas para o Registro de Imigração de Dublin
+      chart:
+        yaxis: 'Total'
+      availabilities_count: '%{count} vagas disponíveis'
+      appointment_selection_title: Selecione o tipo de agendamento
+      choose_an_appointment_type: Selecione um tipo de agendamento
+      receive_an_alert_title: 'Receba um alerta quando novas vagas ficarem disponíveis'
+      receive_an_alert_description: 'Receba um email quando novas vagas do tipo selecionado ficarem disponíveis'
+      availability_history: 'Histórico de disponibilidade'
+    deregister:
+      title: 'Acompanhamento foi desativado com sucesso'
+      subtitle: 'Nenhum novo alerta será enviado para esse tipo de agendamento ;)'
+
+  tracking_mailer:
+    alert:
+      title: 'Novas vagas disponíveis'
+      hi: 'Oi, %{name}'
+      body: Os seguintes vagas estão disponíveis no serviço de Registro de Imigração para a categoria %{cat}, subcategoria %{sbcat} e tipo %{typ}
+      visit_burgh_quay_registration_office: |
+        Visite e tente fazer seu agendamento:
+        %{link}
+      good_luck: Boa sorte!
+      stop_receiving: |
+        Se você deseja parar de receber esse email, acesse:
+        %{link}
+    welcome:
+      title: 'Um novo acompanhamento foi criado'
+      hi: 'Hi, %{name}'
+      body: "Um novo acompanhamento foi criado para a categoria %{cat}, subcategoria %{sbcat} and tipo %{typ}. Você será alertado quando novas vagas ficarem disponíveis."
+      currently_are: 'Atualmente, as seguintas vagas já estão disponíveis:'
+      visit_burgh_quay_registration_office: |
+        Visite e tente fazer seu agendamento:
+        %{link}
+      good_luck: Good luck!
+      stop_receiving: |
+        Se você deseja parar de receber esse email, acesse:
+        %{link}

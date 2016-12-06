@@ -23,7 +23,9 @@ class TrackingsController < ApplicationController
   def preview; end
 
   def create
-    @tracking = Tracking.create tracking_params
+    @tracking = Tracking.new tracking_params
+    @tracking.user.locale = http_accept_language.compatible_language_from I18n.available_locales
+    @tracking.save
 
     if @tracking.valid?
       flash.now[:success] = I18n.t('flash.actions.create.success', resource_name: Tracking.model_name.human)

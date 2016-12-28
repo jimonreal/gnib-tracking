@@ -13,6 +13,7 @@
 class User < ApplicationRecord
 	validates_presence_of :email, :name
 	validates :eula, acceptance: true
+  validates :email, email: {domain: true, mx: true}
 
   has_many :trackings
 end

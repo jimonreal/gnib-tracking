@@ -31,6 +31,11 @@ pt-BR:
         sbcat: 'Subcategoria'
         typ: 'Tipo'
 
+  valid_email:
+    validations:
+      email:
+        invalid: 'é inválido'
+
   helpers:
     submit:
       tracking:

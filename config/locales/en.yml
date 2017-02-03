@@ -85,7 +85,7 @@ en:
       visit_burgh_quay_registration_office: |
         Visit and try to schedule your appointment:
         %{link}
-      good_lock: Good luck!
+      good_luck: Good luck!
       stop_receiving: |
         If you want to stop receiving this email access:
         %{link}
@@ -97,7 +97,7 @@ en:
       visit_burgh_quay_registration_office: |
         Visit and try to schedule your appointment:
         %{link}
-      good_lock: Good luck!
+      good_luck: Good luck!
       stop_receiving: |
         If you want to stop receiving this email access:
         %{link}

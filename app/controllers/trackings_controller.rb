@@ -50,7 +50,7 @@ class TrackingsController < ApplicationController
   protected
 
     def tracking_params
-      params.require(:tracking).permit(:cat_id, :sbcat_id, :typ_id, user_attributes: [:name, :email, :eula])
+      params.require(:tracking).permit(:cat_id, :sbcat_id, :typ_id, :date_behavior, :begin_date, :end_date, user_attributes: [:name, :email, :eula])
     end
 
 end

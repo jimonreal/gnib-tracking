@@ -7,12 +7,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  name       :string(255)
-#  locate     :string(255)      default("pt-BR")
+#  locale     :string(255)      default("pt-BR")
 #
 
 FactoryGirl.define do
   factory :user do
     name Faker::Name.name
-    email Faker::Internet.email
+    email 'me+1278172908192890@brunobispo.com'
   end
 end

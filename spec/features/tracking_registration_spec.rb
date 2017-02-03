@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Public registration of a new tracking', type: :feature, js: true do
-	scenario 'visitor request a new tracking' do
+  scenario 'visitor request a new tracking' do
 
     sbcat = create(:sbcat, name: 'English Language Course', cat: create(:cat, name: 'Study'))
     typ = create(:typ, name: 'New')

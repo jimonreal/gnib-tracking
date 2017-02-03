@@ -21,10 +21,20 @@
           %h3= t 'trackings.new.receive_an_alert_title'
           %p= t 'trackings.new.receive_an_alert_description'
           .form-horizontal
-            = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
-              = f.input :name, wrapper: :horizontal_form
-              = f.input :email, wrapper: :horizontal_form
-              = f.input :eula, as: :boolean, wrapper: :horizontal_boolean
+            = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |c|
+
+              .form-group.date-behavior
+                = f.label :date_behavior, class: 'col-sm-2 control-label string required'
+                - ['btn-group hidden-xs', 'btn-group-vertical visible-xs'].each do |c|
+                  .col-sm-9{'class' => c, 'data-toggle' => "buttons"}
+                    = f.collection_radio_buttons :date_behavior, Tracking.date_behaviors_i18n, :first, :last, checked: @tracking.date_behavior, boolean_style: :inline, item_wrapper_tag: nil, include_hidden: false do |b|
+                      = b.label(class: "btn btn-default #{'active' if b.value == @tracking.date_behavior}") { b.radio_button + b.text }
+              = f.input :begin_date, as: :html_date, wrapper_html: {style: ('display:none' if @tracking.date_behavior != 'later')}, wrapper: :horizontal_form
+              = f.input :end_date, as: :html_date, wrapper_html: {style: ('display:none' if @tracking.date_behavior != 'earlier')}, wrapper: :horizontal_form
+
+              = c.input :name, wrapper: :horizontal_form
+              = c.input :email, wrapper: :horizontal_form
+              = c.input :eula, as: :boolean, wrapper: :horizontal_boolean
             = f.button :submit, class: "btn btn-lg btn-primary"
       
       %h4= t 'trackings.new.availability_history'

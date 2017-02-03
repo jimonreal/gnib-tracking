@@ -12,6 +12,8 @@
 #  last_notification_at :datetime
 #  token                :string(255)
 #  active               :boolean          default(TRUE)
+#  begin_date           :date
+#  end_date             :date
 #
 
 FactoryGirl.define do

@@ -7,7 +7,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  name       :string(255)
-#  locate     :string(255)      default("pt-BR")
+#  locale     :string(255)      default("pt-BR")
 #
 
 class User < ApplicationRecord

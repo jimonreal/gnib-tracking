@@ -30,11 +30,21 @@ en:
         cat: 'Category'
         sbcat: 'Sub Category'
         typ: 'Type'
+        date_behavior: 'Best date'
+        begin_date: 'Starting on'
+        end_date: 'Before'
 
   helpers:
     submit:
       tracking:
         create: "Alert me"
+
+  enums:
+    tracking:
+      date_behavior:
+        closest: 'Any date'
+        earlier: 'Before a specific date'
+        later: 'Starting on a specific date'
 
   flash:
     actions:

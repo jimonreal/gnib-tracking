@@ -12,9 +12,12 @@
 #  last_notification_at :datetime
 #  token                :string(255)
 #  active               :boolean          default(TRUE)
+#  begin_date           :date
+#  end_date             :date
 #
 
 class Tracking < ApplicationRecord
+
   belongs_to :user
   accepts_nested_attributes_for :user
   
@@ -22,12 +25,26 @@ class Tracking < ApplicationRecord
   belongs_to :sbcat
   belongs_to :typ
 
+  validates :begin_date, presence: true, if: :later?
+  validates :end_date, presence: true, if: :earlier?
+
   has_secure_token
 
   scope :active, -> { where(active: true) }
 
+  enum date_behavior: [:closest, :later, :earlier]
+
+  after_initialize do
+    self.date_behavior ||= :closest
+  end
+
+  before_validation do
+    self.begin_date = nil unless later?
+    self.end_date = nil unless earlier?
+  end
+
   def availabilities
-  	Availability.where cat: cat, typ: typ
+  	Availability.where cat: cat, typ: typ, datetime: begin_date...end_date
   end
 
   def new_availabilities
@@ -40,6 +57,14 @@ class Tracking < ApplicationRecord
 
   def deregister!
     update! active: false
+  end
+
+  def begin_date
+    super || created_at.try(:to_date)
+  end
+
+  def end_date
+    super || begin_date.try(:+, 30.days)
   end
 
   def autosave_associated_records_for_user

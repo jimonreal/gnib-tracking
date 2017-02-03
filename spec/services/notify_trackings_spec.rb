@@ -33,7 +33,79 @@ describe NotifyTrackingsService, type: :service do
     NotifyTrackingsService.new(cat: cat, typ: typ).call
   end
 
-  it "don't send notifications twice" do
+  context 'when the tracking is for earlier' do
+    context 'and appointment date is later' do
+      it do
+        tracking = create(:tracking, cat: cat, typ: typ, date_behavior: :earlier, end_date: 3.days.from_now)
+        availability = create(:availability, cat: cat, typ: typ, datetime: 4.days.from_now)
+
+        expect(TrackingMailer).to receive(:alert).exactly(0).times
+
+        NotifyTrackingsService.new(cat: cat, typ: typ).call
+      end
+    end
+
+    context 'and appointment date is in the same day' do
+      it do
+        tracking = create(:tracking, cat: cat, typ: typ, date_behavior: :earlier, end_date: 3.days.from_now)
+        availability = create(:availability, cat: cat, typ: typ, datetime: 3.days.from_now)
+
+        expect(TrackingMailer).to receive(:alert).exactly(0).times
+
+        NotifyTrackingsService.new(cat: cat, typ: typ).call
+      end
+    end
+
+    context 'and appointment date is before' do
+      it do
+        tracking = create(:tracking, cat: cat, typ: typ, date_behavior: :earlier, end_date: 3.days.from_now)
+        availability = create(:availability, cat: cat, typ: typ, datetime: 2.days.from_now)
+
+        expect(TrackingMailer).to receive(:alert).exactly(1).times { mail }
+
+        NotifyTrackingsService.new(cat: cat, typ: typ).call
+      end
+    end
+  end
+
+
+  context 'when the tracking is for later date' do
+    context 'and appointment date is earlier' do
+      it do
+        tracking = create(:tracking, cat: cat, typ: typ, date_behavior: :later, begin_date: 1.day.from_now)
+        availability = create(:availability, cat: cat, typ: typ, datetime: Date.today)
+
+        expect(TrackingMailer).to receive(:alert).exactly(0).times
+
+        NotifyTrackingsService.new(cat: cat, typ: typ).call
+      end
+    end
+
+    context 'and appointment date is in the same day' do
+      it do
+        tracking = create(:tracking, cat: cat, typ: typ, date_behavior: :later, begin_date: Date.today)
+        availability = create(:availability, cat: cat, typ: typ, datetime: Date.today)
+
+        expect(TrackingMailer).to receive(:alert).exactly(1).times { mail }
+
+        NotifyTrackingsService.new(cat: cat, typ: typ).call
+      end
+    end
+
+    context 'and appointment date is after' do
+      it do
+        tracking = create(:tracking, cat: cat, typ: typ, date_behavior: :later, begin_date: Date.today)
+        availability = create(:availability, cat: cat, typ: typ, datetime: 1.day.from_now)
+
+        expect(TrackingMailer).to receive(:alert).exactly(1).times { mail }
+
+        NotifyTrackingsService.new(cat: cat, typ: typ).call
+      end
+    end
+  end
+
+
+  it "doesn't send notifications twice" do
     tracking = create(:tracking_with_availabilities, cat: cat, typ: typ)
 
     # first call

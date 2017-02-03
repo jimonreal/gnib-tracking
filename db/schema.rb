@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130223557) do
+ActiveRecord::Schema.define(version: 20170201213036) do
 
   create_table "availabilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cat_id"
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 20161130223557) do
     t.datetime "last_notification_at"
     t.string   "token"
     t.boolean  "active",               default: true
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.integer  "date_behavior",        default: 0,    null: false
     t.index ["cat_id"], name: "index_trackings_on_cat_id", using: :btree
     t.index ["sbcat_id"], name: "index_trackings_on_sbcat_id", using: :btree
     t.index ["typ_id"], name: "index_trackings_on_typ_id", using: :btree

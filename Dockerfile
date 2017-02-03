@@ -16,4 +16,6 @@ RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
 
 EXPOSE 80
 
+RUN apt-get install -y vim
+
 CMD bash -c "bin/setup && bundle exec puma -C config/puma.rb"

@@ -30,6 +30,9 @@ pt-BR:
         cat: 'Categoria'
         sbcat: 'Subcategoria'
         typ: 'Tipo'
+        date_behavior: 'Melhor data'
+        begin_date: 'A partir de'
+        end_date: 'Anterior a'
 
   valid_email:
     validations:
@@ -40,6 +43,13 @@ pt-BR:
     submit:
       tracking:
         create: "Me alerte"
+
+  enums:
+    tracking:
+      date_behavior:
+        closest: 'Qualquer data'
+        earlier: 'Anterior a data específica'
+        later: 'A partir de data específica'
 
   flash:
     actions:

@@ -64,7 +64,7 @@ class Tracking < ApplicationRecord
   end
 
   def end_date
-    super || begin_date.try(:+, 30.days)
+    super || Date::Infinity.new
   end
 
   def autosave_associated_records_for_user

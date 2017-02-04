@@ -1,6 +1,13 @@
 <%= t 'tracking_mailer.welcome.hi', name: @tracking.user.name %>
 
-<%= t 'tracking_mailer.welcome.body', cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name %>
+<% case @tracking.date_behavior %>
+<% when 'closest' then %>
+<%= t "tracking_mailer.welcome.closest_body", cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name %>
+<% when 'earlier' then %>
+<%= t "tracking_mailer.welcome.earlier_body", cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name, date: l(@tracking.end_date) %>
+<% when 'later' %>
+<%= t "tracking_mailer.welcome.later_body", cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name, date: l(@tracking.begin_date) %>
+<% end %>
 <% if @tracking.availabilities.unexpired.present? %>
 
 <%= t 'tracking_mailer.welcome.currently_are' %>

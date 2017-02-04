@@ -86,7 +86,9 @@ pt-BR:
     alert:
       title: 'Novas vagas disponíveis'
       hi: 'Oi, %{name}'
-      body: Os seguintes vagas estão disponíveis no serviço de Registro de Imigração para a categoria %{cat}, subcategoria %{sbcat} e tipo %{typ}
+      closest_body: As seguintes vagas estão disponíveis no serviço de Registro de Imigração para a categoria %{cat}, subcategoria %{sbcat} e tipo %{typ}.
+      earlier_body: As seguintes vagas estão disponíveis no serviço de Registro de Imigração para a categoria %{cat}, subcategoria %{sbcat} tipo %{typ} com data anterior a %{date}.
+      later_body: As seguintes vagas estão disponíveis no serviço de Registro de Imigração para a categoria %{cat}, subcategoria %{sbcat} tipo %{typ} com data a partir de %{date}.
       visit_burgh_quay_registration_office: |
         Visite e tente fazer seu agendamento:
         %{link}
@@ -96,13 +98,15 @@ pt-BR:
         %{link}
     welcome:
       title: 'Um novo acompanhamento foi criado'
-      hi: 'Hi, %{name}'
-      body: "Um novo acompanhamento foi criado para a categoria %{cat}, subcategoria %{sbcat} and tipo %{typ}. Você será alertado quando novas vagas ficarem disponíveis."
+      hi: 'Oi, %{name}'
+      closest_body: "Um novo acompanhamento foi criado para a categoria %{cat}, subcategoria %{sbcat} e tipo %{typ}. Você será alertado quando novas vagas ficarem disponíveis."
+      earlier_body: "Um novo acompanhamento foi criado para a categoria %{cat}, subcategoria %{sbcat}, tipo %{typ} com data anterior a %{date}. Você será alertado quando novas vagas ficarem disponíveis."
+      later_body: "Um novo acompanhamento foi criado para a categoria %{cat}, subcategoria %{sbcat}, tipo %{typ} com data a partir de %{date}. Você será alertado quando novas vagas ficarem disponíveis."
       currently_are: 'Atualmente, as seguintas vagas já estão disponíveis:'
       visit_burgh_quay_registration_office: |
         Visite e tente fazer seu agendamento:
         %{link}
-      good_luck: Good luck!
+      good_luck: Boa sorte!
       stop_receiving: |
         Se você deseja parar de receber esse email, acesse:
         %{link}

@@ -1,6 +1,13 @@
 <%= t 'tracking_mailer.alert.hi', name: @tracking.user.name %>
 
-<%= t 'tracking_mailer.alert.body', cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name %>
+<% case @tracking.date_behavior %>
+<% when 'closest' then %>
+<%= t "tracking_mailer.alert.closest_body", cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name %>
+<% when 'earlier' then %>
+<%= t "tracking_mailer.alert.earlier_body", cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name, date: l(@tracking.end_date) %>
+<% when 'later' %>
+<%= t "tracking_mailer.alert.later_body", cat: @tracking.cat.name, sbcat: @tracking.sbcat.name, typ: @tracking.typ.name, date: l(@tracking.begin_date) %>
+<% end %>
 
 <% @tracking.new_availabilities.each do |availability| %>
 - <%= l availability.datetime %>

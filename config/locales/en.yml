@@ -31,7 +31,7 @@ en:
         sbcat: 'Sub Category'
         typ: 'Type'
         date_behavior: 'Best date'
-        begin_date: 'Starting on'
+        begin_date: 'Starting from'
         end_date: 'Before'
 
   helpers:
@@ -81,7 +81,9 @@ en:
     alert:
       title: 'New Appointments Available'
       hi: 'Hi, %{name}'
-      body: The follow new appointments are available to Immigration Registration Service for category %{cat}, subcategory %{sbcat} and type %{typ}
+      closest_body: The follow new appointments are available to Immigration Registration Service for category %{cat}, subcategory %{sbcat} and type %{typ}
+      earlier_body: The follow new appointments are available to Immigration Registration Service for category %{cat}, subcategory %{sbcat} and type %{typ} before date %{date}
+      later_body: The follow new appointments are available to Immigration Registration Service for category %{cat}, subcategory %{sbcat} and type %{typ} starting from date %{date}
       visit_burgh_quay_registration_office: |
         Visit and try to schedule your appointment:
         %{link}
@@ -92,7 +94,9 @@ en:
     welcome:
       title: 'A new tracking has been created'
       hi: 'Hi, %{name}'
-      body: "A new tracking has been created for category %{cat}, subcategory %{sbcat} and type %{typ}. You'll be alerted when new appointments are available."
+      closest_body: "A new tracking has been created for category %{cat}, subcategory %{sbcat} and type %{typ}. You'll be alerted when new appointments are available."
+      earlier_body: "A new tracking has been created for category %{cat}, subcategory %{sbcat} and type %{typ} before date %{date}. You'll be alerted when new appointments are available."
+      later_body: "A new tracking has been created for category %{cat}, subcategory %{sbcat} and type %{typ} starting from date %{date}. You'll be alerted when new appointments are available."
       currently_are: 'Currently the following appointments are available:'
       visit_burgh_quay_registration_office: |
         Visit and try to schedule your appointment:

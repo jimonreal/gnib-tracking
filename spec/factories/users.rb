@@ -14,5 +14,6 @@ FactoryGirl.define do
   factory :user do
     name Faker::Name.name
     email 'me+1278172908192890@brunobispo.com'
+    locale 'en'
   end
 end

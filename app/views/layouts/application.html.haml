@@ -6,6 +6,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+    = favicon_link_tag
 
   %body
     :javascript
@@ -17,7 +18,10 @@
       ga('create', '#{ENV['ANALYTICS_TRACKING_ID']}', 'auto');
       ga('send', 'pageview');
 
+    = render 'shared/header'
+
     - flash.each do |key, value|
       :javascript
         toastr.#{key}(#{value.to_json.html_safe})
     = yield
+    = render 'shared/footer'

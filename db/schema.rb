@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 20170201213036) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "data_migrations", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "version", null: false
+    t.index ["version"], name: "unique_data_migrations", unique: true, using: :btree
+  end
+
   create_table "sbcats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "cat_id"

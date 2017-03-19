@@ -1,7 +1,5 @@
 db:
   image: mysql:5.7
-  volumes:
-    - './data:/var/lib/mysql'
   environment:
     MYSQL_ROOT_PASSWORD: mypass
 redis:

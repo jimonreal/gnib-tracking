@@ -9,26 +9,8 @@
 Cat.create!(name: 'Other').sbcats.create! [
   {name: 'Lost Card'},
   {name: 'Stolen Card'},
-  {name: 'Join family member'}
-]
-
-Cat.create!(name: 'Permission Letter').sbcats.create! [
-  {name: 'Atypical Working schemes'},
-  {name: 'Defacto Relationship'},
-  {name: 'Doctors'},
-  {name: 'Elderly Dependent Relatives'},
-  {name: 'EU Treaty Rights'},
-  {name: 'Extension of visitor conditions'},
-  {name: 'Granted Refugees'},
-  {name: 'Subsidiary protection'},
-  {name: 'Invest or Start a Business'},
-  {name: 'Join my child who is an Irish citizen'},
-  {name: 'Join my partner or family member'},
-  {name: 'Leave to Remain'},
-  {name: 'Persons of Independent Means'},
-  {name: 'Religious Ministry'},
-  {name: 'Visiting Academics'},
-  {name: 'Volunteer e.g. in a charity'}
+  {name: 'Join family member'},
+  {name: 'Permission Letter'}
 ]
 
 Cat.create!(name: 'Study').sbcats.create! [

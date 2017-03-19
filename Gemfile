@@ -56,6 +56,8 @@ gem 'rails-i18n', '~> 5.0.0'
 
 gem 'valid_email'
 
+gem 'data_migrate'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-highcharts'
   gem 'rails-assets-toastr'

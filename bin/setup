@@ -19,8 +19,8 @@ chdir APP_ROOT do
 
   puts "\n== Preparing database =="
   system! 'while ! mysqladmin ping -h db --silent; do sleep 1; done'
-  system! 'bin/rails db:exists && bin/rails db:migrate || bin/rails db:setup'
-  
+  system! 'bin/rails db:exists && bin/rails db:migrate:with_data || bin/rails db:setup'
+
   puts "\n== Setup cron jobs =="
   system! 'bin/rails cron:setup'
 

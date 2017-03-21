@@ -1,41 +1,41 @@
-#form.col-lg-10.col-lg-offset-1
-  = simple_form_for @tracking, remote: true do |f|
-    .panel.panel-default
-      .panel-body
-        %h3= t 'trackings.new.appointment_selection_title'
-        .row
-          .col-md-4.col-sm-4
-            = f.association :cat
-          .col-md-4.col-sm-4
-            = f.association :sbcat, collection: @tracking.cat.try(:sbcats), disabled: @tracking.cat.try(:sbcats).blank?
-          .col-md-4.col-sm-4
-            = f.association :typ
+= simple_form_for @tracking, remote: true do |f|
+  .panel.panel-default
+    .panel-body
+      %h3= t 'trackings.new.appointment_selection_title'
+      .row
+        .col-md-4
+          = f.association :cat
+        .col-md-4
+          = f.association :sbcat, collection: @tracking.cat.try(:sbcats), disabled: @tracking.cat.try(:sbcats).blank?
+        .col-md-4
+          = f.association :typ
 
-        .panel.panel-info.tracking-form
-          .panel-heading{'style' => ('display:none;' if @tracking.cat && @tracking.sbcat && @tracking.typ)}
-            %h4.choose-type
-              %i.fa.fa-share.fa-rotate-270{'aria-hidden'=>"true"}
-              %span= t 'trackings.new.choose_an_appointment_type'
-          .panel-body{'class' => ('blocked' unless @tracking.cat && @tracking.sbcat && @tracking.typ)}
-            %h3
-              %i.fa.fa-bell.fa-2x{'aria-hidden'=>"true"}
-              = t 'trackings.new.receive_an_alert_title'
-            .form-horizontal
-              = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |c|
+      .panel.panel-info.tracking-form
+        .panel-heading{'style' => ('display:none;' if @tracking.cat && @tracking.sbcat && @tracking.typ)}
+          %h4.choose-type
+            %i.fa.fa-share.fa-rotate-270{'aria-hidden'=>"true"}
+            %span= t 'trackings.new.choose_an_appointment_type'
+        .panel-body{'class' => ('blocked' unless @tracking.cat && @tracking.sbcat && @tracking.typ)}
+          %h3
+            %i.fa.fa-bell.fa-2x{'aria-hidden'=>"true"}
+          %h3= t 'trackings.new.receive_an_alert_title'
+          %p= t 'trackings.new.receive_an_alert_description'
+          .form-horizontal
+            = f.simple_fields_for :user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |c|
 
-                .form-group.date-behavior
-                  = f.label :date_behavior, class: 'col-sm-2 control-label string required'
-                  - ['btn-group hidden-xs', 'btn-group-vertical visible-xs'].each do |c|
-                    .col-lg-9.col-sm-10{'class' => c, 'data-toggle' => "buttons"}
-                      = f.collection_radio_buttons :date_behavior, Tracking.date_behaviors_i18n, :first, :last, checked: @tracking.date_behavior, boolean_style: :inline, item_wrapper_tag: nil, include_hidden: false do |b|
-                        = b.label(class: "btn btn-default #{'active' if b.value == @tracking.date_behavior}") { b.radio_button + b.text }
-                = f.input :begin_date, as: :html_date, wrapper_html: {style: ('display:none' if @tracking.date_behavior != 'later')}, wrapper: :horizontal_form
-                = f.input :end_date, as: :html_date, wrapper_html: {style: ('display:none' if @tracking.date_behavior != 'earlier')}, wrapper: :horizontal_form
+              .form-group.date-behavior
+                = f.label :date_behavior, class: 'col-sm-2 control-label string required'
+                - ['btn-group hidden-xs', 'btn-group-vertical visible-xs'].each do |c|
+                  .col-sm-9{'class' => c, 'data-toggle' => "buttons"}
+                    = f.collection_radio_buttons :date_behavior, Tracking.date_behaviors_i18n, :first, :last, checked: @tracking.date_behavior, boolean_style: :inline, item_wrapper_tag: nil, include_hidden: false do |b|
+                      = b.label(class: "btn btn-default #{'active' if b.value == @tracking.date_behavior}") { b.radio_button + b.text }
+              = f.input :begin_date, as: :html_date, wrapper_html: {style: ('display:none' if @tracking.date_behavior != 'later')}, wrapper: :horizontal_form
+              = f.input :end_date, as: :html_date, wrapper_html: {style: ('display:none' if @tracking.date_behavior != 'earlier')}, wrapper: :horizontal_form
 
-                = c.input :name, wrapper: :horizontal_form
-                = c.input :email, wrapper: :horizontal_form
-                = c.input :eula, as: :boolean, wrapper: :horizontal_boolean
-              = f.button :submit, class: "btn btn-lg btn-primary"
-
-        %h4= t 'trackings.new.availability_history'
-        = line_chart @chart_data, label: t('trackings.new.chart.yaxis'), height: '150px'
+              = c.input :name, wrapper: :horizontal_form
+              = c.input :email, wrapper: :horizontal_form
+              = c.input :eula, as: :boolean, wrapper: :horizontal_boolean
+            = f.button :submit, class: "btn btn-lg btn-primary"
+      
+      %h4= t 'trackings.new.availability_history'
+      = line_chart @chart_data, label: t('trackings.new.chart.yaxis'), height: '150px'

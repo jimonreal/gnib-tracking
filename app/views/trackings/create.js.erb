@@ -1,5 +1,5 @@
 Chartkick.LineChart("chart-1", <%= @chart_data.to_json.html_safe %>)
-$("#form").replaceWith('<%= j render('form') %>')
+$("#form").html('<%= j render('form') %>')
 <% flash.each do |key, value| %>
   toastr.<%= key %>(<%= value.to_json.html_safe %>)
 <% end %>

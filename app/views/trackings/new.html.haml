@@ -1,11 +1,17 @@
-%main.main.container
-  .row
-    .col-lg-10.col-lg-offset-1
-      %h1
-        = t 'trackings.new.title'
-        %span= t 'trackings.new.subtitle'
-  .row
-    = render 'form'
+#headerwrap
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2
+        %h1
+          = t 'trackings.new.title'
+          %span= t 'trackings.new.subtitle'
+      .col-lg-8.col-lg-offset-2.himg
+    .row
+      #form.col-lg-8.col-lg-offset-2
+        = render 'form'
+  %footer
+    = t 'contact_me'
+    = link_to 'me@brunobispo.com', 'mailto:me@brunobispo.com'
 
 
 :javascript

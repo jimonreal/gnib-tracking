@@ -9,14 +9,17 @@ require 'spec_helper'
 require 'rspec/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'capybara/webkit'
-require 'headless'
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, debug: true)
+end
 
-Capybara.javascript_driver = :webkit
-WebMock.disable_net_connect!(allow_localhost: true)
+Capybara.raise_server_errors = false
 
-headless = Headless.new
-headless.start
+require 'webmock/rspec'
+WebMock.disable_net_connect! allow_localhost: true
+
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -31,7 +34,7 @@ headless.start
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -97,7 +100,7 @@ RSpec.configure do |config|
       MSG
     end
     DatabaseCleaner.clean_with(:truncation)
-  end  
+  end
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
@@ -128,7 +131,5 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
 
-  Capybara.run_server = true 
-  Capybara.server_port = 7000
-  Capybara.app_host = "http://localhost:#{Capybara.server_port}" 
+  config.include WaitForAjax, type: :feature
 end

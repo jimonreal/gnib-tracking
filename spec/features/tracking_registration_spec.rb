@@ -8,16 +8,17 @@ feature 'Public registration of a new tracking', type: :feature, js: true do
 
     visit root_path
 
-    page.driver.header 'Accept-Language', 'en-AU,en-US;q=0.7,en;q=0.3'
+    page.driver.add_headers 'Accept-Language' => 'en-AU,en-US;q=0.7,en;q=0.3'
 
-    fill_in 'Your name', with: 'Bruno', exact: false
-    fill_in 'Your email', with: 'me@brunobispo.com', exact: false
     select 'Study', from: 'Category', match: :first, exact: false
     select 'English Language Course', from: 'Sub Category', exact: false
     select 'New', from: 'Type', exact: true, match: :first
+    wait_for_ajax
+    fill_in 'Your name', with: 'Bruno', exact: false
+    fill_in 'Your email', with: 'me@brunobispo.com', exact: false
     check 'tracking_user_attributes_eula'
-
     click_button "Alert me"
+    wait_for_ajax
 
     expect(page).to have_text("Tracking was successfully created")
 
@@ -33,17 +34,17 @@ feature 'Public registration of a new tracking', type: :feature, js: true do
 
     visit root_path
 
-    fill_in 'Your name', with: 'Bruno', exact: false
-    fill_in 'Your email', with: 'me@brunobispo.com', exact: false
     select 'Study', from: 'Category', match: :first, exact: false
     select 'English Language Course', from: 'Sub Category', exact: false
     select 'New', from: 'Type', exact: true, match: :first
+    fill_in 'Your name', with: 'Bruno', exact: false
+    fill_in 'Your email', with: 'me@brunobispo.com', exact: false
     check 'tracking_user_attributes_eula'
 
     click_button "Alert me"
 
     expect(page).to have_text("Tracking was successfully created")
-    
+
     expect(User.count).to be 1
     expect(user.trackings.count).to be 2
   end
@@ -55,6 +56,6 @@ feature 'Unregistration of a tracking', type: :feature do
 
     visit deregister_tracking_path(tracking.token)
 
-    expect(page).to have_text("Tracking was successfully deregistered")    
+    expect(page).to have_text("Tracking was successfully deregistered")
   end
 end

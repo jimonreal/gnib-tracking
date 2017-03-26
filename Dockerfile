@@ -2,6 +2,9 @@ FROM ruby:2.3
 
 RUN apt-get update && apt-get install -y nodejs qt4-dev-tools libqt4-dev libqt4-core libqt4-gui xvfb mysql-client
 
+RUN curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
+RUN chmod +x /usr/local/bin/phantomjs
+
 WORKDIR /tmp
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
